@@ -3,7 +3,7 @@
     <type>org.netbeans.modules.java.j2seproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
-            <name>SOLD - Gustavo(22_04_2018)</name>
+            <name>SOLD</name>
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>

@@ -1,5 +1,6 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 /**
  * Esta tela é a tela de Busca de Produto
  *
- * @author Everton Cezar
+ * @author Everto Cezar
  * @version 1.0
  * @since 20/04/2018
  *
@@ -25,11 +26,13 @@ public class FrameBuscaDeProdutoServico extends JInternalFramelModelo {
     private JPanel painelFormulario;
     private JTable tabelaPrincipal;
     private GridBagConstraints cons;
+    
+    private FrameSistema frameSistema;
 
-    public FrameBuscaDeProdutoServico(Dimension dimension) {
-        super(dimension);
+    public FrameBuscaDeProdutoServico(Dimension dimension,FrameSistema frameSistema) {
+        super(dimension,frameSistema);
         initComponents();
-        modelDaTabela();
+        modeloDaTabela();
         addComponent();
         super.addBotoesDeAcao();
         super.addFormulario(painelFormulario);
@@ -66,7 +69,7 @@ public class FrameBuscaDeProdutoServico extends JInternalFramelModelo {
         painelFormulario.setLayout(new GridBagLayout());
     }
 
-    private void modelDaTabela() {
+    private void modeloDaTabela() {
         tabelaPrincipal.setModel(new DefaultTableModel(
                 new Object[][]{},
                 new String[]{

@@ -1,5 +1,7 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameLeilaoListeners;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,12 +35,15 @@ public class FrameLeilao extends JInternalFramelModelo {
     private JTextField tfValorDoAremate;
     private JTextField tfValorDoAremate1;
     private GridBagConstraints cons;
+    
+    private FrameSistema frameSistema;
 
-    public FrameLeilao(Dimension dimension) {
-        super(dimension);
+    public FrameLeilao(Dimension dimension, FrameSistema frameSistema) {
+        super(dimension,frameSistema);
         initComponents();
         ModelTabela();
         addComponents();
+        FrameLeilaoListeners listenres = new FrameLeilaoListeners(frameSistema, this);
         super.addFormulario(panelFormulario);
     }
 
@@ -173,4 +178,17 @@ public class FrameLeilao extends JInternalFramelModelo {
             tabelaPrincipal.getColumnModel().getColumn(2).setResizable(false);
         }
     }
+
+    public JButton getBtnAremate() {
+        return btnAremate;
+    }
+
+    public JButton getBtnDarLance() {
+        return btnDarLance;
+    }
+
+    public JButton getBtnSair() {
+        return btnSair;
+    }
+    
 }

@@ -1,6 +1,9 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameCadastro1Listeners;
+import br.udesc.ceavi.progii.sold.listeners.FrameCadastro2Listeners;
 import br.udesc.ceavi.progii.sold.modelo.Estado;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -44,14 +47,17 @@ public class FrameCadastro1 extends JInternalFramelModelo {
 
     private FrameCRUDEndereco dadosEndereco;
     private GridBagConstraints cons;
+    
+    private FrameSistema frameSistema;
 
-    public FrameCadastro1(Dimension dimension) {
-        super(dimension);
+    public FrameCadastro1(Dimension dimension,FrameSistema frameSistema) {
+        super(dimension,frameSistema);
         initComponents();
         personalizeComponents();
         addComponents();
+        super.addBotoesDeAcao();
+        FrameCadastro1Listeners listerner = new FrameCadastro1Listeners(frameSistema, this);
         super.addFormulario(panelFormulario);
-        super.addBotoesDeRegistro();
     }
 
     private void initComponents() {
@@ -76,7 +82,7 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         panelEspaço = new JPanel();
         lbSenha = new JLabel();
         pfSenha = new JPasswordField();
-        dadosEndereco = new FrameCRUDEndereco(panelEndereco.getSize());
+        dadosEndereco = new FrameCRUDEndereco(panelEndereco.getSize(),frameSistema);
         tfNome.setPreferredSize(dimensionTextField);
     }
 
@@ -256,7 +262,7 @@ public class FrameCadastro1 extends JInternalFramelModelo {
     class FrameCRUDEndereco extends JInternalFramelModelo {
 
         private final Dimension dimension = new Dimension(320, 200);
-
+        //
         private Label lbCep;
         private Label lbLogradouro;
         private Label lbNumero;
@@ -280,14 +286,16 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         private LayoutManager layout;
 
         private GridBagConstraints cons;
+        //
 
-        public FrameCRUDEndereco(Dimension dimension) throws HeadlessException {
-            super(dimension);
+        public FrameCRUDEndereco(Dimension dimension,FrameSistema frameSistema) throws HeadlessException {
+            super(dimension, frameSistema);
             initComponents();
             addComponents();
         }
 
         private void initComponents() {
+            //
             lbCep = new Label("Cep*");
             lbLogradouro = new Label("Operador*");
             lbNumero = new Label("Numero*");

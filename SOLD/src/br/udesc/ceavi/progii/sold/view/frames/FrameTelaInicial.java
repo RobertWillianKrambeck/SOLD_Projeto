@@ -5,6 +5,8 @@
  */
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameTelaInicialListener;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,9 +15,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Label;
 import java.awt.LayoutManager;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -33,12 +33,16 @@ public class FrameTelaInicial extends JInternalFramelModelo {
     private JPanel panelFormulario;
     private LayoutManager layout;
     private GridBagConstraints cons;
+    
+    private FrameSistema frameSistema;
 
-    public FrameTelaInicial(Dimension dimension) {
-        super(dimension);
+    public FrameTelaInicial(Dimension dimension, FrameSistema frameSistema) {
+        super(dimension,frameSistema);
+        this.frameSistema = frameSistema;
         initComponents();
         personalizeComponents();
         addComponents();
+        adicionarListenersTelaInicial();
     }
 
     private void initComponents() {
@@ -84,7 +88,7 @@ public class FrameTelaInicial extends JInternalFramelModelo {
     private void personalizeComponents() {
         lbBemVindo.setText("Bem Vindo");
         Font font = new Font("Arial", 1, 75);
-        Color cor = new Color(255, 228, 101);
+        Color cor = new Color(0, 0, 20);
         lbBemVindo.setFont(font);
         lbBemVindo.setForeground(cor);
 
@@ -96,5 +100,18 @@ public class FrameTelaInicial extends JInternalFramelModelo {
         jbAcessar.setPreferredSize(dimensionButao);
         panelFormulario.setLayout(layout);
     }
+    
+    public void adicionarListenersTelaInicial(){
+        FrameTelaInicialListener listener = new FrameTelaInicialListener(frameSistema, this);
+    }
 
+    public JButton getJbRegistrar() {
+        return jbRegistrar;
+    }
+
+    public JButton getJbAcessar() {
+        return jbAcessar;
+    }
+
+    
 }

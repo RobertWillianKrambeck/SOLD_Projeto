@@ -13,6 +13,7 @@ import br.udesc.ceavi.progii.sold.view.frames.*;
 public class ClassePrincipal implements Runnable {
 
     public static void main(String[] args) {
+        
         //Instancia a classe principal da aplicação
         ClassePrincipal telaPrincipal = new ClassePrincipal();
 
@@ -28,11 +29,14 @@ public class ClassePrincipal implements Runnable {
      */
     @Override
     public void run() {
+        
         //Instancia a tela principal da aplicação
-        FrameSistema frame = new FrameSistema();
-        JInternalFramelModelo tela = new FrameTelaInicial(frame.getSize());
-        frame.adicionarFrameInterno(tela);
+        FrameSistema frameSistema = new FrameSistema();
+        JInternalFramelModelo tela = new FrameCadastro2(frameSistema.getSize(),frameSistema);
+        frameSistema.adicionarFrameInterno(tela);
         //Exibe a tela principal para o usuário
-        frame.setVisible(true);
+        frameSistema.setVisible(true);
+
     }
+
 }

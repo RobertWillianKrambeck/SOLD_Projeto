@@ -1,7 +1,7 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import br.udesc.ceavi.progii.sold.view.painels.CRUDActionPanel;
-import br.udesc.ceavi.progii.sold.view.painels.CRUDActionRegistroPanel;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,21 +25,20 @@ public abstract class JInternalFramelModelo extends JInternalFrame {
     private Dimension dimension;
     //Layout do panel Principal
     private LayoutManager layout;
-    //Classes que retonaram os botoes de Registro
-    private CRUDActionRegistroPanel botoesDeRegistro;
     //Classes que retonaram os botoes de Açao
     private CRUDActionPanel botoesDeAction;
     //JPanel principal do JInternalFrame, que será utilizado como container dos demais componetes
     private JPanel panelPrincipal;
-    //JPanel para add os BotoesCRUD
-    private JPanel panelBotoesCRUD;
-
+    //FrameSistema Instancia
+    FrameSistema frameSistema;
+    
     /**
      * Contrutor da Classe FrameCRUDModelo
      *
      * @param dimension
+     * @param frameSistema
      */
-    public JInternalFramelModelo(Dimension dimension) {
+    public JInternalFramelModelo(Dimension dimension, FrameSistema frameSistema) {
         /**
          * O Codigo a baixo serve para definir o tamanho, tal tamanho basea-se
          * na lagura da tela onde esse serar add. Por isso Recebe-se as
@@ -48,12 +47,14 @@ public abstract class JInternalFramelModelo extends JInternalFrame {
         this.dimension = new Dimension((int) (dimension.getWidth() - 6), 430);
         super.setSize(this.dimension);
        
+        this.frameSistema = frameSistema;
+        
         //Definição do Layout
         super.setLayout(layout);
 
         initializeComponets();
         addComponets();
-
+        
         //Torna a tela Visivel
         super.setVisible(true);
     }
@@ -69,7 +70,6 @@ public abstract class JInternalFramelModelo extends JInternalFrame {
         layout = new BorderLayout();
         panelPrincipal.setLayout(layout);
         botoesDeAction = new CRUDActionPanel(this);
-        botoesDeRegistro = new CRUDActionRegistroPanel(this);
     }
 
     /**
@@ -83,19 +83,15 @@ public abstract class JInternalFramelModelo extends JInternalFrame {
         panelPrincipal.add(container, BorderLayout.CENTER);
     }
     private void addComponets() {
-
         this.add(panelPrincipal);
-    }
-
-    public void addBotoesDeRegistro() {
-        this.setContentPane(panelPrincipal);
-        panelBotoesCRUD = new CRUDActionRegistroPanel(this);
-        panelPrincipal.add(panelBotoesCRUD, BorderLayout.SOUTH);
     }
     
     public void addBotoesDeAcao() {
         this.setContentPane(panelPrincipal);
-        panelBotoesCRUD = new CRUDActionPanel(this);
-        panelPrincipal.add(panelBotoesCRUD, BorderLayout.SOUTH);
+        panelPrincipal.add(botoesDeAction, BorderLayout.SOUTH);
+    }
+
+    public CRUDActionPanel getBotoesDeAction() {
+        return this.botoesDeAction;
     }
 }

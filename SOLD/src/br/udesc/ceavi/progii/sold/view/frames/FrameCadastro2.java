@@ -1,7 +1,8 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameCadastro2Listeners;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,8 +10,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -44,13 +43,14 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     private TipoCliente tipoCliente;
     private JLabel lbNomeUsuMostrar;
 
-    public FrameCadastro2(Dimension dimension) {
-        super(dimension);
+    public FrameCadastro2(Dimension dimension, FrameSistema frameSistema) {
+        super(dimension, frameSistema);
         initComponents();
         personalize();
         addComponents();
+        FrameCadastro2Listeners listenrsDaClasse = new FrameCadastro2Listeners(frameSistema, this);
+        super.addBotoesDeAcao();
         super.addFormulario(panelFormulario);
-        super.addBotoesDeRegistro();
     }
 
     private void addComponents() {
@@ -111,7 +111,6 @@ public class FrameCadastro2 extends JInternalFramelModelo {
 
         grupoDeRB.add(rbUsuarioProfi);
         rbUsuarioProfi.setText("USUÁRIO PARA PROFISSÃO");
-        rbUsuarioProfi.addActionListener(new TipoCliente());
         cons = new GridBagConstraints();
         cons.gridx = 3;
         cons.gridy = 3;
@@ -139,9 +138,6 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         panelTipoUsuario.setMinimumSize(new Dimension(20, 20));
         panelTipoUsuario.setPreferredSize(new Dimension(20, 20));
         panelTipoUsuario.setLayout(new GridLayout(1, 3));
-
-        rbUsuarioNormal.addActionListener(tipoCliente);
-        rbUsuarioProfi.addActionListener(tipoCliente);
     }
 
     private void initComponents() {
@@ -159,7 +155,14 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         tipoCliente = new TipoCliente();
     }
 
-    private class TipoCliente extends JInternalFrame implements ActionListener {
+    /**
+     * Esta classe interna serve para modificar o Panel do Tipo Endereco
+     *
+     * @author Gustavo
+     * @since 20/04/2018
+     * @version 1.0
+     */
+    public class TipoCliente extends JInternalFrame {
 
         //Usuario Simples
         private JButton btnPremiun;
@@ -176,17 +179,7 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         public TipoCliente() {
         }
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (rbUsuarioNormal.isSelected() && !rbUsuarioProfi.isSelected()) {
-                tipoCliente.initComponentsClienteNormal();
-            } else if (!rbUsuarioNormal.isSelected() && rbUsuarioProfi.isSelected()) {
-                tipoCliente.initComponentsClienteProfi();
-            }
-
-        }
-
-        private void initComponentsClienteProfi() {
+        public void initComponentsClienteProfi() {
             tipoCliente = new TipoCliente();
             lbDiscricao = new JLabel("Discrição");
             lbNDaCarteira = new JLabel("Carteira de Trabalho");
@@ -231,7 +224,7 @@ public class FrameCadastro2 extends JInternalFramelModelo {
             setPanelTipoUsuario(this);
         }
 
-        private void initComponentsClienteNormal() {
+        public void initComponentsClienteNormal() {
             tipoCliente = new TipoCliente();
             this.setLayout(new GridLayout(1, 3));
             btnFree = new JButton("Free");
@@ -252,8 +245,19 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         this.panelTipoUsuario.add(frame, BorderLayout.CENTER);
         this.panelTipoUsuario.repaint();
         this.panelTipoUsuario.revalidate();
-
         this.repaint();
         this.revalidate();
+    }
+
+    public JRadioButton getRbUsuarioProfi() {
+        return rbUsuarioProfi;
+    }
+
+    public JRadioButton getRbUsuarioNormal() {
+        return rbUsuarioNormal;
+    }
+
+    public TipoCliente getTipoCliente() {
+        return tipoCliente;
     }
 }

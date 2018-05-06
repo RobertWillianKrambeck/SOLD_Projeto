@@ -67,9 +67,7 @@ public class FrameSistema extends JFrame {
     private Color cor;
 
     //Butão Busca
-    private JLabel lbBusca;
-    //Butão Busca
-    private JLabel lbFundo;
+    private JLabel btBusca;
 
     //Constante ussada no layout
     GridBagConstraints cons;
@@ -149,8 +147,7 @@ public class FrameSistema extends JFrame {
     public void adicionarFrameInterno(JInternalFrame frame) {
         //Insere a instância de um JInternalFrame no DesktopPanel da aplicação
         ((BasicInternalFrameUI) frame.getUI()).setNorthPane(null); //retirar o painel superior
-//        frame.setBorder(null);
-    
+        frame.setBorder(null);
         desktop.add(frame, BorderLayout.BEFORE_FIRST_LINE);
     }
 
@@ -178,7 +175,7 @@ public class FrameSistema extends JFrame {
         dimensaoTelaPrincipal = new Dimension(800, 654);
 
         //Instancia do Butao de Busca;
-        lbBusca = new JLabel();
+        btBusca = new JLabel();
 
         //Instancia da class imagem
         imagem = new Image();
@@ -209,7 +206,7 @@ public class FrameSistema extends JFrame {
         cons = new GridBagConstraints();
         cons.gridx = 2;
         cons.gridy = 0;
-        panelCabecario.add(lbBusca, cons);
+        panelCabecario.add(btBusca, cons);
 
         //Add o Cabeçario ao contener da Classe
         contentPane.add(panelCabecario, BorderLayout.PAGE_START);
@@ -236,7 +233,7 @@ public class FrameSistema extends JFrame {
         lbLogo.setIcon(imagem.getImageLogo());
 
         //Add Icone ao Butao de Busca
-        lbBusca.setIcon(imagem.getImageIcon());
+        btBusca.setIcon(imagem.getImageIcon());
         
         //Personalização Panel de Menu
         panelMenu.setPreferredSize(new Dimension(WIDTH, 40));

@@ -1,5 +1,7 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameLoginListeners;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -35,12 +37,15 @@ public class FrameLogin extends JInternalFramelModelo {
     private JButton btnRegistrar;
     private Dimension dimensionTF;
     private JCheckBox jCBLembrar;
+    
+    private FrameSistema frameSistema;
 
-    public FrameLogin(Dimension dimension) {
-        super(dimension);
+    public FrameLogin(Dimension dimension,FrameSistema frameSistema) {
+        super(dimension,frameSistema);
         initComponents();
         personalizeComponents();
         addComponents();
+        FrameLoginListeners listener = new FrameLoginListeners(frameSistema, this);
         super.addFormulario(panelFormulario);
     }
 
@@ -111,4 +116,17 @@ public class FrameLogin extends JInternalFramelModelo {
         panelFormulario.add(jCBLembrar,cons);
 
     }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JButton getBtnRegistrar() {
+        return btnRegistrar;
+    }
+
+    public JCheckBox getjCBLembrar() {
+        return jCBLembrar;
+    }
+
 }

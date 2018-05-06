@@ -5,6 +5,8 @@
  */
 package br.udesc.ceavi.progii.sold.view.frames;
 
+import br.udesc.ceavi.progii.sold.listeners.FrameDiscricaoProdutoListeners;
+import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -25,19 +27,20 @@ import javax.swing.JTextField;
  */
 public class FrameDiscricaoProduto extends JInternalFramelModelo {
 
-    private JButton btnLance;
+    private JButton btnIrParaLeilao;
     private JPanel panelFormulario;
     private JLabel lbNomeProduto;
     private JLabel lbPreco;
     private JTextField tfDescricaoProduto;
     private LayoutManager layout;
     private GridBagConstraints cons;
-
-    public FrameDiscricaoProduto(Dimension dimension) {
-        super(dimension);
+    
+    public FrameDiscricaoProduto(Dimension dimension,FrameSistema frameSistema) {
+        super(dimension,frameSistema);
         initComponents();
         personalizeComponents();
         addComponents();
+        FrameDiscricaoProdutoListeners listeners = new FrameDiscricaoProdutoListeners(frameSistema, this);
         super.addFormulario(panelFormulario);
     }
 
@@ -45,7 +48,7 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         panelFormulario = new JPanel();
         lbNomeProduto = new JLabel();
         lbPreco = new JLabel();
-        btnLance = new JButton();
+        btnIrParaLeilao = new JButton();
         tfDescricaoProduto = new JTextField();
         layout = new GridBagLayout();
     }
@@ -66,8 +69,8 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         tfDescricaoProduto.setText("Descrição do Produto");
 
         //Personalização do butao lance
-        btnLance.setFont(new Font("Tahoma", 0, 14)); // NOI18N
-        btnLance.setText("Lance");
+        btnIrParaLeilao.setFont(new Font("Tahoma", 0, 14)); // NOI18N
+        btnIrParaLeilao.setText("IR Para Leilão");
         //Personalização Panel Formulario
         panelFormulario.setLayout(layout);
     }
@@ -100,7 +103,7 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         cons.ipady = 21;
         cons.anchor = GridBagConstraints.NORTHWEST;
         cons.insets = new Insets(18, 82, 100, 0);
-        panelFormulario.add(btnLance, cons);
+        panelFormulario.add(btnIrParaLeilao, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -117,6 +120,10 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         cons.gridy = 1;
         cons.fill = GridBagConstraints.BOTH;
         getContentPane().add(panelFormulario, cons);
+    }
+
+    public JButton getBtnIrParaLeilao() {
+        return btnIrParaLeilao;
     }
 
 }

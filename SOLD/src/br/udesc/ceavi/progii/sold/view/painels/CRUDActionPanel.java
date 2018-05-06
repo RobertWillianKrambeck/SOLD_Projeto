@@ -18,9 +18,8 @@ public class CRUDActionPanel extends JPanel {
 
     //Botões para as funcionalidades CRUD
     private JButton btCancelar;
-    private JButton btNovo;
-    private JButton btGravar;
-    private JButton btExcluir;
+    private JButton btProximo;
+    private JButton btAnterior;
 
     //Gerenciador de Layout 
     private LayoutManager layout;
@@ -70,16 +69,12 @@ public class CRUDActionPanel extends JPanel {
         btCancelar.setSize(dimensaoBotao);
 
         //Define o botão Novo
-        btNovo = new JButton("Novo");
-        btNovo.setSize(dimensaoBotao);
+        btProximo = new JButton("Proximo");
+        btProximo.setSize(dimensaoBotao);
 
         //Define o botão Gravar
-        btGravar = new JButton("Gravar");
-        btGravar.setSize(dimensaoBotao);
-
-        //Define o botão Excluir
-        btExcluir = new JButton("Excluir");
-        btExcluir.setSize(dimensaoBotao);
+        btAnterior = new JButton("Anterior");
+        btAnterior.setSize(dimensaoBotao);
     }
 
     /**
@@ -90,10 +85,9 @@ public class CRUDActionPanel extends JPanel {
         this.setLayout(layout);
 
         //adiciona os botões no JPanel
+        this.add(btAnterior);
+        this.add(btProximo);
         this.add(btCancelar);
-        this.add(btNovo);
-        this.add(btExcluir);
-        this.add(btGravar);
     }
 
     /**
@@ -110,8 +104,8 @@ public class CRUDActionPanel extends JPanel {
      *
      * @return JButton para a funcionalidade Novo
      */
-    public JButton getBtNovo() {
-        return btNovo;
+    public JButton getBtProximo() {
+        return btProximo;
     }
 
     /**
@@ -119,17 +113,7 @@ public class CRUDActionPanel extends JPanel {
      *
      * @return JButton para a funcionalidade Gravar
      */
-    public JButton getBtGravar() {
-        return btGravar;
+    public JButton getBtAnterior() {
+        return btAnterior;
     }
-
-    /**
-     * Método que retorna o Botão Excluir do painel CRUD
-     *
-     * @return JButton para a funcionalidade Excluir
-     */
-    public JButton getBtExcluir() {
-        return btExcluir;
-    }
-
 }

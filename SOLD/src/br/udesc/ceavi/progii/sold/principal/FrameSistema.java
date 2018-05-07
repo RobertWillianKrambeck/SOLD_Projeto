@@ -18,13 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-/**
- * Esta é a tela principal da aplicação
- *
- * @author Gustavo de Carvalho Santos
- * @version 1.0
- * @since 09/04/2018
- */
 public class FrameSistema extends JFrame {
 
     //Dimensão da tela principal
@@ -83,9 +76,9 @@ public class FrameSistema extends JFrame {
 
         //Métodos responsáveis pela construção da GUI da tela principal
         initializeDesktopPane();
-        initComponents();
-        adicionaMenuPrincipal();
+        initComponents();        
         addComponents();
+        adicionaMenuPrincipal();
         personalizarComponents();
 
         //Define a dimensão da tela principal
@@ -236,8 +229,8 @@ public class FrameSistema extends JFrame {
         btBusca.setIcon(imagem.getImageIcon());
         
         //Personalização Panel de Menu
-        panelMenu.setPreferredSize(new Dimension(WIDTH, 40));
+        panelMenu.setPreferredSize(new Dimension(WIDTH, 30));
         panelMenu.setBackground(cor);
-        panelMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        //panelMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
     }
 }

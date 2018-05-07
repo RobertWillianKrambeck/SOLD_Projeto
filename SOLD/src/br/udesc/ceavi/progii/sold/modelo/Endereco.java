@@ -31,6 +31,4 @@ public class Endereco {
         this.numeroCasa = numeroCasa;
     }
     
-    
-    
 }

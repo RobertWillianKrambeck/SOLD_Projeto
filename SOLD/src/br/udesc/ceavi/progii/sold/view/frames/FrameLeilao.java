@@ -35,11 +35,9 @@ public class FrameLeilao extends JInternalFramelModelo {
     private JTextField tfValorDoAremate;
     private JTextField tfValorDoAremate1;
     private GridBagConstraints cons;
-    
-    private FrameSistema frameSistema;
 
     public FrameLeilao(Dimension dimension, FrameSistema frameSistema) {
-        super(dimension,frameSistema);
+        super(dimension, frameSistema);
         initComponents();
         ModelTabela();
         addComponents();
@@ -190,5 +188,5 @@ public class FrameLeilao extends JInternalFramelModelo {
     public JButton getBtnSair() {
         return btnSair;
     }
-    
+
 }

@@ -1,7 +1,7 @@
 package br.udesc.ceavi.progii.sold.listeners;
 
 import br.udesc.ceavi.progii.sold.principal.FrameSistema;
-import br.udesc.ceavi.progii.sold.view.frames.FrameLeilao;
+import br.udesc.ceavi.progii.sold.view.frames.FrameDiscricaoProduto;
 import br.udesc.ceavi.progii.sold.view.frames.FrameTelaPrincipal;
 import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;
@@ -62,7 +62,7 @@ public class FrameTelaPrincipalListeneres {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameLeilao(frameSistema.getSize(), frameSistema);
+            frameNovo = new FrameDiscricaoProduto(frameSistema.getSize(), frameSistema);
             frameSistema.adicionarFrameInterno(frameNovo);
             frameAtual.dispose();
             frameNovo.setVisible(true);

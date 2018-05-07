@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.udesc.ceavi.progii.sold.view.frames;
 
 import br.udesc.ceavi.progii.sold.listeners.FrameDiscricaoProdutoListeners;
@@ -23,20 +18,21 @@ import javax.swing.JTextField;
  *
  * @author Everton Cezar e Gustavo Santos
  * @since 19/04/2018
- * @version 1.0
+ * @version 1.1
  */
 public class FrameDiscricaoProduto extends JInternalFramelModelo {
 
     private JButton btnIrParaLeilao;
+    private JButton btnVoltar;
     private JPanel panelFormulario;
     private JLabel lbNomeProduto;
     private JLabel lbPreco;
     private JTextField tfDescricaoProduto;
     private LayoutManager layout;
     private GridBagConstraints cons;
-    
-    public FrameDiscricaoProduto(Dimension dimension,FrameSistema frameSistema) {
-        super(dimension,frameSistema);
+
+    public FrameDiscricaoProduto(Dimension dimension, FrameSistema frameSistema) {
+        super(dimension, frameSistema);
         initComponents();
         personalizeComponents();
         addComponents();
@@ -49,6 +45,7 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         lbNomeProduto = new JLabel();
         lbPreco = new JLabel();
         btnIrParaLeilao = new JButton();
+        btnVoltar = new JButton();
         tfDescricaoProduto = new JTextField();
         layout = new GridBagLayout();
     }
@@ -65,65 +62,62 @@ public class FrameDiscricaoProduto extends JInternalFramelModelo {
         lbPreco.setText("<<Preço>>");
 
         //Personalização da TextF Preço
-        tfDescricaoProduto.setFont(new Font("Tahoma", 0, 14)); // NOI18N
+        tfDescricaoProduto.setFont(font);
         tfDescricaoProduto.setText("Descrição do Produto");
 
         //Personalização do butao lance
-        btnIrParaLeilao.setFont(new Font("Tahoma", 0, 14)); // NOI18N
         btnIrParaLeilao.setText("IR Para Leilão");
+
         //Personalização Panel Formulario
         panelFormulario.setLayout(layout);
+        tfDescricaoProduto.setEditable(false);
+
+        //Personalização do butao voltar
+        btnVoltar.setText("<<<Voltar");
     }
 
     private void addComponents() {
         cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 4;
-        cons.gridwidth = 5;
-        cons.ipady = 39;
+        cons.gridy = 0;
         cons.anchor = GridBagConstraints.NORTHWEST;
-        cons.insets = new Insets(86, 44, 0, 0);
+        cons.insets = new Insets(0, 86, 0, 0);
         panelFormulario.add(lbNomeProduto, cons);
 
         cons = new GridBagConstraints();
-        cons.gridx = 7;
-        cons.gridy = 4;
-        cons.gridwidth = 7;
-        cons.ipadx = 2;
-        cons.ipady = 39;
+        cons.gridx = 6;
+        cons.gridy = 0;
         cons.anchor = GridBagConstraints.NORTHWEST;
-        cons.insets = new Insets(86, 57, 0, 0);
         panelFormulario.add(lbPreco, cons);
 
         cons = new GridBagConstraints();
-        cons.gridx = 12;
-        cons.gridy = 6;
-        cons.gridwidth = 7;
-        cons.ipadx = 35;
-        cons.ipady = 21;
-        cons.anchor = GridBagConstraints.NORTHWEST;
-        cons.insets = new Insets(18, 82, 100, 0);
+        cons.gridx = 0;
+        cons.gridy = 1;
+        cons.gridwidth = 13;
+        cons.ipadx = 650;
+        cons.ipady = 200;
+        cons.insets = new Insets(0, 20, 0, 20);
+        panelFormulario.add(tfDescricaoProduto, cons);
+
+        cons = new GridBagConstraints();
+        cons.gridx = 11;
+        cons.gridy = 13;
+        cons.insets = new Insets(5, 75, 0, 0);
         panelFormulario.add(btnIrParaLeilao, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 0;
-        cons.gridy = 5;
-        cons.gridwidth = 14;
-        cons.ipadx = 837;
-        cons.ipady = 223;
-        cons.anchor = GridBagConstraints.NORTHWEST;
-        cons.insets = new Insets(18, 44, 0, 0);
-        panelFormulario.add(tfDescricaoProduto, cons);
-
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 1;
-        cons.fill = GridBagConstraints.BOTH;
-        getContentPane().add(panelFormulario, cons);
+        cons.gridy = 13;
+        cons.insets = new Insets(5, -300, 0, 0);
+        panelFormulario.add(btnVoltar, cons);
     }
 
     public JButton getBtnIrParaLeilao() {
         return btnIrParaLeilao;
     }
 
+    public JButton getBtnVoltar() {
+        return btnVoltar;
+    }
+    
 }

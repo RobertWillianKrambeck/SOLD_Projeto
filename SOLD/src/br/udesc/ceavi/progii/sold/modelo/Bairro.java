@@ -13,6 +13,9 @@ public class Bairro {
     private String nome;
     private List<Rua> ruas = new ArrayList<Rua>();
 
+    public Bairro() {
+    }
+
     public Bairro(String cep, String nome) {
         this.cep = cep;
         this.nome = nome;

@@ -26,10 +26,10 @@ public class FrameTelaPrincipal extends JInternalFramelModelo {
     private JButton btnDarLance3;
     private JButton btnDarLance4;
     private JLabel lbDestaqueTitulo;
-    private JLabel lbFoto1;
-    private JLabel lbFoto2;
-    private JLabel lbFoto3;
-    private JLabel lbFoto4;
+    private JLabel lbFotoGeradeira;
+    private JLabel lbFotoImpresora;
+    private JLabel lbFotoTelefone;
+    private JLabel lbFotoServico;
     private JLabel lbFundo;
     private JLabel lbPagamento;
     private JPanel panelDestaque;
@@ -53,24 +53,25 @@ public class FrameTelaPrincipal extends JInternalFramelModelo {
         lbDestaqueTitulo = new JLabel("Destaques");
         lbFundo = new JLabel();
         panelProdutos = new JPanel();
-        lbFoto1 = new JLabel();
-        lbFoto1.setBorder(BorderFactory.createTitledBorder("Telefone"));
+        
+        lbFotoGeradeira = new JLabel();
+        lbFotoGeradeira.setBorder(BorderFactory.createTitledBorder("Geladeira"));
 
-        lbFoto2 = new JLabel();
-        lbFoto2.setBorder(BorderFactory.createTitledBorder("Geladeira"));
+        lbFotoImpresora = new JLabel();
+        lbFotoImpresora.setBorder(BorderFactory.createTitledBorder("Impresora"));
 
-        lbFoto3 = new JLabel();
-        lbFoto3.setBorder(BorderFactory.createTitledBorder("Impresora"));
+        lbFotoTelefone = new JLabel();
+        lbFotoTelefone.setBorder(BorderFactory.createTitledBorder("Telefone"));
 
-        lbFoto4 = new JLabel();
-        lbFoto4.setBorder(BorderFactory.createTitledBorder("Serviço"));
+        lbFotoServico = new JLabel();
+        lbFotoServico.setBorder(BorderFactory.createTitledBorder("Serviço"));
         
         imagem = new Image();
 
-        btnDarLance1 = new JButton("Dar Lance");
-        btnDarLance2 = new JButton("Dar Lance");
-        btnDarLance3 = new JButton("Dar Lance");
-        btnDarLance4 = new JButton("Dar Lance");
+        btnDarLance1 = new JButton("Discrição");
+        btnDarLance2 = new JButton("Discrição");
+        btnDarLance3 = new JButton("Discrição");
+        btnDarLance4 = new JButton("Discrição");
         lbPagamento = new JLabel("Aceitamos Cartão e Boleto Bancario");
 
         panelFormulario.setLayout(new GridBagLayout());
@@ -106,28 +107,28 @@ public class FrameTelaPrincipal extends JInternalFramelModelo {
         cons.gridy = 0;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.insets = new Insets(25, 5, 25, 5);
-        panelProdutos.add(lbFoto1, cons);
+        panelProdutos.add(lbFotoGeradeira, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 3;
         cons.gridy = 0;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.insets = new Insets(25, 5, 25, 5);
-        panelProdutos.add(lbFoto2, cons);
+        panelProdutos.add(lbFotoImpresora, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 5;
         cons.gridy = 0;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.insets = new Insets(25, 5, 25, 5);
-        panelProdutos.add(lbFoto3, cons);
+        panelProdutos.add(lbFotoTelefone, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 4;
         cons.gridy = 0;
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.insets = new Insets(25, 5, 25, 5);
-        panelProdutos.add(lbFoto4, cons);
+        panelProdutos.add(lbFotoServico, cons);
 
         cons = new GridBagConstraints();
         cons.gridx = 1;
@@ -163,10 +164,10 @@ public class FrameTelaPrincipal extends JInternalFramelModelo {
     }
 
     private void setImagem() {
-        lbFoto1.setIcon(imagem.getImageDestaqueGeladeira());
-        lbFoto2.setIcon(imagem.getImageDestaqueImpresora()); 
-        lbFoto3.setIcon(imagem.getImageDestaqueSemFoto()); 
-        lbFoto4.setIcon(imagem.getImageDestaqueTelefone());
+        lbFotoGeradeira.setIcon(imagem.getImageDestaqueGeladeira());
+        lbFotoImpresora.setIcon(imagem.getImageDestaqueImpresora()); 
+        lbFotoTelefone.setIcon(imagem.getImageDestaqueTelefone()); 
+        lbFotoServico.setIcon(imagem.getImageDestaqueSemFoto());
 
     }
 

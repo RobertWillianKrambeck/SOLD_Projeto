@@ -2,9 +2,7 @@ package br.udesc.ceavi.progii.sold.listeners;
 
 import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro1;
-import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro2;
 import br.udesc.ceavi.progii.sold.view.frames.FrameLogin;
-import br.udesc.ceavi.progii.sold.view.frames.FrameTelaInicial;
 import br.udesc.ceavi.progii.sold.view.frames.FrameTelaPrincipal;
 import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;

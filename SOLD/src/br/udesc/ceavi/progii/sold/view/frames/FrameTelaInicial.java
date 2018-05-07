@@ -19,8 +19,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Admin
+ * Esta Classe é o modelo do JIntenalFrame da tela inicial
+ * @author Gustavo C. Santos
+ * @version 1.0
+ * @since 23/04/2018
  */
 public class FrameTelaInicial extends JInternalFramelModelo {
 

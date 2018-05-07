@@ -41,10 +41,10 @@ public class FrameTelaInicialListener {
     public FrameTelaInicialListener(FrameSistema frameSistema, JInternalFramelModelo frameAtual) {
         this.frameSistema = frameSistema;
         this.frameAtual = frameAtual;
-        addCrudListenr();
+        addCrudListener();
     }
 
-    public void addCrudListenr() {
+    public void addCrudListener() {
         JButton btn;
         btn = ((FrameTelaInicial) frameAtual).getJbAcessar();
         btn.addActionListener(new jbAcessarActionPerformed());

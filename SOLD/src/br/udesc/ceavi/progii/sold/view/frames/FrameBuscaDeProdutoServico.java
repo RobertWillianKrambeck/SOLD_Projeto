@@ -27,8 +27,6 @@ public class FrameBuscaDeProdutoServico extends JInternalFramelModelo {
     private JTable tabelaPrincipal;
     private GridBagConstraints cons;
     
-    private FrameSistema frameSistema;
-
     public FrameBuscaDeProdutoServico(Dimension dimension,FrameSistema frameSistema) {
         super(dimension,frameSistema);
         initComponents();

@@ -37,8 +37,6 @@ public class FrameLogin extends JInternalFramelModelo {
     private JButton btnRegistrar;
     private Dimension dimensionTF;
     private JCheckBox jCBLembrar;
-    
-    private FrameSistema frameSistema;
 
     public FrameLogin(Dimension dimension,FrameSistema frameSistema) {
         super(dimension,frameSistema);

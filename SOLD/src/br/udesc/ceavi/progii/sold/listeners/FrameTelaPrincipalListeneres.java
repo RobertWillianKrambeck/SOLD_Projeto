@@ -43,10 +43,10 @@ public class FrameTelaPrincipalListeneres {
             JInternalFramelModelo frameAtual) {
         this.frameSistema = frameSistema;
         this.frameAtual = frameAtual;
-        addCrudListenersButto();
+        addCrudListeners();
     }
 
-    private void addCrudListenersButto() {
+    private void addCrudListeners() {
         JButton btn;
         btn = ((FrameTelaPrincipal) frameAtual).getBtnDarLance1();
         btn.addActionListener(new btnActionListener());

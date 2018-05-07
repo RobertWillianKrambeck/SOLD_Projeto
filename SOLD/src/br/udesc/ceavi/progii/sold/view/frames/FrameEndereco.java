@@ -49,7 +49,6 @@ public class FrameEndereco {
     private LayoutManager layout;
 
     private GridBagConstraints cons;
-    //
 
     public FrameEndereco() {
 

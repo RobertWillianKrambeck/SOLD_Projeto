@@ -17,7 +17,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
+/**
+ * Classe FrameSistema é o casco do sistema
+ *
+ * @author Gustavo de Carvalho Santos
+ * @since 09/04/2018
+ * @version 1.0
+ */
 public class FrameSistema extends JFrame {
 
     //Dimensão da tela principal

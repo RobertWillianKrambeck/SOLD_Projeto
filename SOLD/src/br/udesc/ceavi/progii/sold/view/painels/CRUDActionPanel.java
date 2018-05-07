@@ -11,6 +11,7 @@ import javax.swing.JPanel;
  * Esta classe define o painel para as funcionalidades CRUD para o sistema
  *
  * @author Márcio José Mantau
+ * @modificado Gustavo C. Santos
  * @version 1.0
  * @since 12/03/2018
  */

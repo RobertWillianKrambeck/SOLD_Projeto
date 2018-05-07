@@ -10,13 +10,13 @@ import javax.swing.JButton;
 
 /**
  * Class que define a implementação padrão para os Listeners referentes a tela
- * de leilao
+ * de cadastro1
  *
  * @author Gustavo Santos
  * @version 1.0
  * @since 23/04/2018
  */
-public class FrameLeilaoListeners {
+public class FrameTelaPrincipalListeneres {
 
     /**
      * Atributo que mantém a referencia do objeto do FrameSistema, este
@@ -24,7 +24,7 @@ public class FrameLeilaoListeners {
      */
     private FrameSistema frameSistema;
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe FrameTelaPrincipal
      */
     private JInternalFramelModelo frameAtual;
     /**
@@ -39,47 +39,33 @@ public class FrameLeilaoListeners {
      * Principal
      * @param frameAtual referencia do objeto da classe que possui os listener
      */
-    public FrameLeilaoListeners(FrameSistema frameSistema, JInternalFramelModelo frameAtual) {
+    public FrameTelaPrincipalListeneres(FrameSistema frameSistema,
+            JInternalFramelModelo frameAtual) {
         this.frameSistema = frameSistema;
         this.frameAtual = frameAtual;
-        addCrudListener();
+        addCrudListenersButto();
     }
 
-    private void addCrudListener() {
+    private void addCrudListenersButto() {
         JButton btn;
-        btn = ((FrameLeilao) frameAtual).getBtnAremate();
-        btn.addActionListener(new btnAremateActionListenr());
-        btn = ((FrameLeilao) frameAtual).getBtnDarLance();
-        btn.addActionListener(new btnDarLanceActionListenr());
-        btn = ((FrameLeilao) frameAtual).getBtnSair();
-        btn.addActionListener(new btnSairActionListenr());
-
+        btn = ((FrameTelaPrincipal) frameAtual).getBtnDarLance1();
+        btn.addActionListener(new btnActionListener());
+        btn = ((FrameTelaPrincipal) frameAtual).getBtnDarLance2();
+        btn.addActionListener(new btnActionListener());
+        btn = ((FrameTelaPrincipal) frameAtual).getBtnDarLance3();
+        btn.addActionListener(new btnActionListener());
+        btn = ((FrameTelaPrincipal) frameAtual).getBtnDarLance4();
+        btn.addActionListener(new btnActionListener());
     }
 
-    private class btnAremateActionListenr implements ActionListener {
+    private class btnActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Funcina Butao Aremate");
-        }
-    }
-
-    private class btnDarLanceActionListenr implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Funcina Butao Dar Lance");
-        }
-    }
-
-    private class btnSairActionListenr implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaPrincipal(frameSistema.getSize(), frameSistema);
+            frameNovo = new FrameLeilao(frameSistema.getSize(), frameSistema);
             frameSistema.adicionarFrameInterno(frameNovo);
             frameAtual.dispose();
-            frameNovo.setVisible(true);        }
+            frameNovo.setVisible(true);
+        }
     }
-
 }

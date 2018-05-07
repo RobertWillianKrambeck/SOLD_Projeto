@@ -10,8 +10,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
+ * Class que define a implementação padrão para os Listeners referentes a tela
+ * de FrameTelaInicial
  *
- * @author Everton
+ * @author Everton e Gustavo
  */
 public class FrameTelaInicialListener {
 
@@ -21,11 +23,11 @@ public class FrameTelaInicialListener {
      */
     private FrameSistema frameSistema;
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe FrameTelaInicial
      */
     private JInternalFramelModelo frameAtual;
     /**
-     * Atributo que mantém a referencia do objeto da Classe alvo (TelaPrincipal)
+     * Atributo que mantém a referencia do objeto da Classe
      */
     private JInternalFramelModelo frameNovo;
 

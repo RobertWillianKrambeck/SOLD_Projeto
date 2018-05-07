@@ -4,10 +4,12 @@ import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro1;
 import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro2;
 import br.udesc.ceavi.progii.sold.view.frames.FrameTelaInicial;
+import br.udesc.ceavi.progii.sold.view.frames.FrameTelaPrincipal;
 import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -15,21 +17,29 @@ import javax.swing.JRadioButton;
  * de cadastro2
  *
  * @author Gustavo Santos
- * @version 1.0
+ * @version 2.0
  * @since 23/04/2018
  */
 public class FrameCadastro2Listeners {
- /**
+
+    /**
      * Atributo que mantém a referencia do objeto do FrameSistema, este
      * instanciado na classe ClassePrincipal
      */
     private FrameSistema frameSistema;
+
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe FrameCadastro2
      */
-    private JInternalFramelModelo frameAtual;
+    private FrameCadastro2 frameCadastro2;
+
     /**
-     * Atributo que mantém a referencia do objeto da Classe alvo (TelaPrincipal)
+     * Atributo que mantém a referencia do objeto da Classe FrameCadastro1
+     */
+    private FrameCadastro1 frameCadastro1;
+
+    /**
+     * Atributo que mantém a referencia do objeto da Classe alvo
      */
     private JInternalFramelModelo frameNovo;
 
@@ -38,12 +48,16 @@ public class FrameCadastro2Listeners {
      *
      * @param frameSistema referencia do objeto instaciado na classe Classe
      * Principal
-     * @param frameAtual referencia do objeto da classe que possui os listener
+     * @param frameCadastro2 referencia do objeto da classe que possui os
+     * listener
+     * @param frameCadastro1 referencia do objeto instaciado na classe Classe
+     * frameCadastro1
      */
     public FrameCadastro2Listeners(FrameSistema frameSistema,
-            JInternalFramelModelo frameAtual) {
+            FrameCadastro2 frameCadastro2, FrameCadastro1 frameCadastro1) {
         this.frameSistema = frameSistema;
-        this.frameAtual = frameAtual;
+        this.frameCadastro1 = frameCadastro1;
+        this.frameCadastro2 = frameCadastro2;
         addCrudListenersButto();
         addCrudListenersRadioButto();
     }
@@ -54,67 +68,90 @@ public class FrameCadastro2Listeners {
     private void addCrudListenersButto() {
         JButton bnt;
         //Add ação ao butao Anterior da classe
-        bnt = ((FrameCadastro2)frameAtual).getBotoesDeAction().getBtAnterior();
+        bnt = frameCadastro2.getBotoesDeAction().getBtAnterior();
         bnt.addActionListener(new btnAnteriorActionListener());
 
         //Add ação ao butao Cancelar da classe
-        bnt = ((FrameCadastro2)frameAtual).getBotoesDeAction().getBtCancelar();
+        bnt = frameCadastro2.getBotoesDeAction().getBtCancelar();
         bnt.addActionListener(new btnCancelarActionListener());
         
-        bnt = ((FrameCadastro2)frameAtual).getBotoesDeAction().getBtProximo();
+        bnt = frameCadastro2.getBotoesDeAction().getBtProximo();
         bnt.addActionListener(new btnProximoActionListener());
     }
 
+    /**
+     * Método que adiciona os Listener para aos radioButton do formulário
+     */
     private void addCrudListenersRadioButto() {
         JRadioButton rButton;
-        rButton = ((FrameCadastro2)frameAtual).getRbUsuarioNormal();
+        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioNormal();
         rButton.addActionListener(new radioButtonNormalActionListener());
-
-        rButton = ((FrameCadastro2)frameAtual).getRbUsuarioProfi();
+        
+        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioProfi();
         rButton.addActionListener(new radioButtonProfiActionListener());
     }
 
+    /**
+     * Estes metodo ira chamar o frameCadastro1
+     */
     class btnAnteriorActionListener implements ActionListener {
-
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameCadastro1(frameSistema.getSize(), frameSistema);
+            frameCadastro2.setVisible(false);
+            frameCadastro1.limparSenha();
+            frameCadastro1.setVisible(true);
+        }
+    }
+
+    /**
+     * Estes metodo ira chamar o FrameTelaPrincipal
+     */
+    class btnProximoActionListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frameNovo = new FrameTelaPrincipal(frameSistema.getSize(), frameSistema);
             frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
+            frameCadastro2.dispose();
+            frameCadastro1.dispose();
             frameNovo.setVisible(true);
         }
     }
 
-    class btnProximoActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Funciona Proximo");
-        }
-    }
-
+    /**
+     * Estes metodo ira chamar o FrameTelaInicial
+     */
     class btnCancelarActionListener implements ActionListener {
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);        }
-    }
-
-    class radioButtonNormalActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            ((FrameCadastro2)frameAtual).getTipoCliente().initComponentsClienteNormal();
+            int i = JOptionPane.showConfirmDialog(null, "Vocë Perderar Todo O Porcesso!",
+                    "Quer Fechar?", JOptionPane.YES_NO_OPTION);
+            if (i == JOptionPane.YES_OPTION) {
+                frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
+                frameSistema.adicionarFrameInterno(frameNovo);
+                frameCadastro1.setVisible(false);
+                frameNovo.setVisible(true);
+                frameCadastro2.dispose();
+                frameCadastro1.dispose();
+            }
         }
     }
-
-    class radioButtonProfiActionListener implements ActionListener {
-
+    
+    class radioButtonNormalActionListener implements ActionListener {
+        
         @Override
         public void actionPerformed(ActionEvent e) {
-            ((FrameCadastro2)frameAtual).getTipoCliente().initComponentsClienteProfi();
+            ((FrameCadastro2) frameCadastro2).getTipoCliente().initComponentsClienteNormal();
+        }
+    }
+    
+    class radioButtonProfiActionListener implements ActionListener {
+        
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ((FrameCadastro2) frameCadastro2).getTipoCliente().initComponentsClienteProfi();
         }
     }
 }

@@ -1,26 +1,25 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
 import br.udesc.ceavi.progii.sold.listeners.FrameCadastro1Listeners;
-import br.udesc.ceavi.progii.sold.listeners.FrameCadastro2Listeners;
-import br.udesc.ceavi.progii.sold.modelo.Estado;
 import br.udesc.ceavi.progii.sold.principal.FrameSistema;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
-import java.awt.Label;
-import java.awt.LayoutManager;
+import java.util.Arrays;
 import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
- * @author Gustavo de Carvalho Santos
- * @since 19/04/2018
- * @version 1.0
+ * Esta classe é o modelo de JInternalFrame da Primeira Tela de Cadastro
+ *
+ * @author Gustavo Santos
+ * @version 2.0
+ * @see 05/05/2018
  */
 public class FrameCadastro1 extends JInternalFramelModelo {
 
@@ -45,13 +44,12 @@ public class FrameCadastro1 extends JInternalFramelModelo {
     private JTextField tfNome;
     private JTextField tfTelefone;
 
-    private FrameCRUDEndereco dadosEndereco;
     private GridBagConstraints cons;
-    
-    private FrameSistema frameSistema;
 
-    public FrameCadastro1(Dimension dimension,FrameSistema frameSistema) {
-        super(dimension,frameSistema);
+    private FrameEndereco frameInternoEndereco;
+
+    public FrameCadastro1(Dimension dimension, FrameSistema frameSistema) {
+        super(dimension, frameSistema);
         initComponents();
         personalizeComponents();
         addComponents();
@@ -82,13 +80,14 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         panelEspaço = new JPanel();
         lbSenha = new JLabel();
         pfSenha = new JPasswordField();
-        dadosEndereco = new FrameCRUDEndereco(panelEndereco.getSize(),frameSistema);
+        frameInternoEndereco = new FrameEndereco();
         tfNome.setPreferredSize(dimensionTextField);
     }
 
     private void addComponents() {
         panelFormulario.setLayout(new GridBagLayout());
 
+        //Nome >>>>
         //Nome >>>>
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -105,7 +104,9 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         cons.anchor = GridBagConstraints.NORTHWEST;
         panelFormulario.add(tfNome, cons);
         //Nome <<<<<
+        //Nome <<<<<
 
+        //Data >>>>>
         //Data >>>>>
         cons = new GridBagConstraints();
         cons.gridx = 5;
@@ -120,7 +121,9 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(tfData, cons);
         //Data <<<<
+        //Data <<<<
 
+        //Email >>>>>
         //Email >>>>>
         cons = new GridBagConstraints();
         cons.gridx = 0;
@@ -135,6 +138,7 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         cons.fill = GridBagConstraints.HORIZONTAL;
         cons.anchor = GridBagConstraints.NORTHWEST;
         panelFormulario.add(tfEmail, cons);
+        //Email <<<<
         //Email <<<<
 
         //Telefone >>>>
@@ -163,7 +167,7 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         cons.gridy = 7;
         cons.anchor = GridBagConstraints.NORTHWEST;
         panelFormulario.add(lbID, cons);
-        
+
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 8;
@@ -173,6 +177,8 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         //ID <<<<<<
         //ID <<<<<<
 
+        //CPF >>>>>
+        //CPF >>>>>
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 5;
@@ -185,11 +191,13 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         cons.gridwidth = 4;
         cons.fill = GridBagConstraints.HORIZONTAL;
         panelFormulario.add(tfCPF, cons);
+        //CPF <<<<<
+        //CPF <<<<<
 
         //Formulario de Endereco >>>>>
         //Formulario de Endereco >>>>>
-        panelEndereco.add(dadosEndereco.getPanelFormulario());
-        panelEndereco.setBorder(BorderFactory.createTitledBorder("Dados De Endereço"));
+        panelEndereco.add(frameInternoEndereco.getFrameInternoPrincipal());
+        frameInternoEndereco.getFrameInternoPrincipal().setVisible(true);
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 9;
@@ -241,7 +249,6 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         panelFormulario.add(lbSenhaConfirma, cons);
         //Senha <<<<<
         //Senha <<<<<
-
     }
 
     private void personalizeComponents() {
@@ -257,207 +264,36 @@ public class FrameCadastro1 extends JInternalFramelModelo {
         tfData.setPreferredSize(dimensionTextField);
         tfNome.setPreferredSize(dimensionTextField);
         tfID.setEditable(false);
+        frameInternoEndereco.getFrameInternoPrincipal().setBorder(null);
+        ((BasicInternalFrameUI) frameInternoEndereco.getFrameInternoPrincipal().getUI()).setNorthPane(null);
+        panelEndereco.setBorder(BorderFactory.createTitledBorder("Dados De Endereço"));
+        getBotoesDeAction().getBtAnterior().setEnabled(false);
     }
 
-    class FrameCRUDEndereco extends JInternalFramelModelo {
+    public void limparSenha() {
+        pfSenha.setText("");
+        pfSenhaConfirma.setText("");
+        pfSenha.setBackground(Color.red);
+        pfSenhaConfirma.setBackground(Color.red);
+    }
 
-        private final Dimension dimension = new Dimension(320, 200);
-        //
-        private Label lbCep;
-        private Label lbLogradouro;
-        private Label lbNumero;
-        private Label lbComplemento;
-        private Label lbBairro;
-        private Label lbCidade;
-        private Label lbSigla;
-        private Label lbUF;
+    public int gerarID() {
+        int num;
+        num = (int) (Math.random() * 10000000);
+        System.out.println(num);
+        tfID.setText("" + num);
+        return num;
+    }
 
-        private JTextField tfCep;
-        private JTextField tfLogradouro;
-        private JTextField tfNumero;
-        private JTextField tfComplemento;
-        private JTextField tfBairro;
-        private JTextField tfCidade;
-        private JTextField tfSigla;
+    public JTextField getTfNome() {
+        return tfNome;
+    }
 
-        private JComboBox cbUF;
-
-        private JPanel panelFormulario;
-        private LayoutManager layout;
-
-        private GridBagConstraints cons;
-        //
-
-        public FrameCRUDEndereco(Dimension dimension,FrameSistema frameSistema) throws HeadlessException {
-            super(dimension, frameSistema);
-            initComponents();
-            addComponents();
+    public boolean senhaEqual(){
+        if(Arrays.equals(pfSenha.getPassword(), new char[]{}) || 
+                Arrays.equals(pfSenhaConfirma.getPassword(), new char[]{})){
+            return false;
         }
-
-        private void initComponents() {
-            //
-            lbCep = new Label("Cep*");
-            lbLogradouro = new Label("Operador*");
-            lbNumero = new Label("Numero*");
-            lbComplemento = new Label("Complemento*");
-            lbBairro = new Label("Bairro*");
-            lbCidade = new Label("Cidade*");
-            lbSigla = new Label("Sigla*");
-            lbUF = new Label("UF*");
-
-            tfCep = new JTextField();
-            tfLogradouro = new JTextField();
-            tfNumero = new JTextField();
-            tfComplemento = new JTextField();
-            tfBairro = new JTextField();
-            tfCidade = new JTextField();
-            tfSigla = new JTextField();
-            cbUF = new JComboBox(Estado.values());
-            cbUF.setSelectedIndex(-1);
-
-            layout = new GridBagLayout();
-
-            panelFormulario = new JPanel(layout);
-        }
-
-        private void addComponents() {
-            //Cep --->
-            //(0,0) lbCep
-            cons = new GridBagConstraints();
-            cons.gridx = 0;
-            cons.gridy = 0;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbCep, cons);
-
-            //(1,0) tfCep
-            cons = new GridBagConstraints();
-            cons.gridx = 1;
-            cons.gridy = 0;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 50;
-            panelFormulario.add(tfCep, cons);
-            //Cep <---
-
-            //Logradouro --->
-            //(2,0) lbLogradouro
-            cons = new GridBagConstraints();
-            cons.gridx = 2;
-            cons.gridy = 0;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbLogradouro, cons);
-
-            //(3,0) lbLogradouro
-            cons = new GridBagConstraints();
-            cons.gridx = 3;
-            cons.gridy = 0;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 50;
-            panelFormulario.add(tfLogradouro, cons);
-            //Logradouro <---
-
-            //Numero --->
-            //(0,1) lbNumero
-            cons = new GridBagConstraints();
-            cons.gridx = 0;
-            cons.gridy = 1;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbNumero, cons);
-
-            //(1,1) tfNumero
-            cons = new GridBagConstraints();
-            cons.gridx = 1;
-            cons.gridy = 1;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 50;
-            panelFormulario.add(tfNumero, cons);
-            //Numero <---
-
-            //Complemento --->
-            //(2,1) lbComplemento
-            cons = new GridBagConstraints();
-            cons.gridx = 2;
-            cons.gridy = 1;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbComplemento, cons);
-
-            //(4,2) tfComplemento
-            cons = new GridBagConstraints();
-            cons.gridx = 3;
-            cons.gridy = 1;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 50;
-            panelFormulario.add(tfComplemento, cons);
-            //Complemento <---
-
-            //Bairro --->
-            //(0,2) lbBairro
-            cons = new GridBagConstraints();
-            cons.gridx = 0;
-            cons.gridy = 2;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbBairro, cons);
-
-            //(1,2) tfBairro
-            cons = new GridBagConstraints();
-            cons.gridx = 1;
-            cons.gridy = 2;
-            cons.gridwidth = 3;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 100;
-            panelFormulario.add(tfBairro, cons);
-            //Bairro <---
-
-            //Cidade --->
-            //(0,3) lbCidade
-            cons = new GridBagConstraints();
-            cons.gridx = 0;
-            cons.gridy = 3;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbCidade, cons);
-
-            //(1,3) tfCidade
-            cons = new GridBagConstraints();
-            cons.gridx = 1;
-            cons.gridy = 3;
-            cons.gridwidth = 3;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 100;
-            panelFormulario.add(tfCidade, cons);
-            //Cidade <---
-
-            //UF --->
-            //(0,4) lbUF
-            cons = new GridBagConstraints();
-            cons.gridx = 0;
-            cons.gridy = 4;
-            cons.gridwidth = 1;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            panelFormulario.add(lbUF, cons);
-
-            //(1,4) cbUF
-            cons = new GridBagConstraints();
-            cons.gridx = 1;
-            cons.gridy = 4;
-            cons.gridwidth = 3;
-            cons.fill = GridBagConstraints.HORIZONTAL;
-            cons.ipadx = 100;
-            panelFormulario.add(cbUF, cons);
-            //Cidade <---
-            super.addFormulario(panelFormulario);
-        }
-
-        public JPanel getPanelFormulario() {
-            return panelFormulario;
-        }
+        return Arrays.equals(pfSenha.getPassword(), pfSenhaConfirma.getPassword());
     }
 }

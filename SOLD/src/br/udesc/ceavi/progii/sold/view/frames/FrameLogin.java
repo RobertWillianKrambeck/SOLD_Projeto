@@ -129,4 +129,12 @@ public class FrameLogin extends JInternalFramelModelo {
         return jCBLembrar;
     }
 
+    public JTextField getTfUsuario() {
+        return tfUsuario;
+    }
+
+    public JPasswordField getJpfSenha() {
+        return jpfSenha;
+    }
+
 }

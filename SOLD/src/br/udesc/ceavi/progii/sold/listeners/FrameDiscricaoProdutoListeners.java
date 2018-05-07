@@ -24,11 +24,11 @@ public class FrameDiscricaoProdutoListeners {
      */
     private FrameSistema frameSistema;
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe (FrameDiscricaoProduto)
      */
     private JInternalFramelModelo frameAtual;
     /**
-     * Atributo que mantém a referencia do objeto da Classe alvo (TelaPrincipal)
+     * Atributo que mantém a referencia do objeto da Classe alvo 
      */
     private JInternalFramelModelo frameNovo;
 

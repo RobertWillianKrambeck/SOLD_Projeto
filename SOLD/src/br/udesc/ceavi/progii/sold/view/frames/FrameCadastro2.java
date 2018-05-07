@@ -21,10 +21,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
 /**
- *
+ * Esta classe é o modelo de JInternalFrame da Primeira Tela de Cadastro
  * @author Gustavo Santos
+ * @version 2.0
+ * @see 05/05/2018
  */
 public class FrameCadastro2 extends JInternalFramelModelo {
 
@@ -43,12 +44,13 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     private TipoCliente tipoCliente;
     private JLabel lbNomeUsuMostrar;
 
-    public FrameCadastro2(Dimension dimension, FrameSistema frameSistema) {
+    public FrameCadastro2(Dimension dimension, FrameSistema frameSistema,FrameCadastro1 frameCadastro1) {
         super(dimension, frameSistema);
         initComponents();
         personalize();
         addComponents();
-        FrameCadastro2Listeners listenrsDaClasse = new FrameCadastro2Listeners(frameSistema, this);
+        FrameCadastro2Listeners listenrsDaClasse = new FrameCadastro2Listeners(frameSistema, 
+                this,frameCadastro1);
         super.addBotoesDeAcao();
         super.addFormulario(panelFormulario);
     }
@@ -138,6 +140,8 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         panelTipoUsuario.setMinimumSize(new Dimension(20, 20));
         panelTipoUsuario.setPreferredSize(new Dimension(20, 20));
         panelTipoUsuario.setLayout(new GridLayout(1, 3));
+        //Modifica o Conteudo do Bt Proximo para Concluir
+        getBotoesDeAction().getBtProximo().setText("Concluir");
     }
 
     private void initComponents() {
@@ -157,13 +161,12 @@ public class FrameCadastro2 extends JInternalFramelModelo {
 
     /**
      * Esta classe interna serve para modificar o Panel do Tipo Endereco
-     *
+     * Ela controi um JInternalFrame
      * @author Gustavo
      * @since 20/04/2018
      * @version 1.0
      */
     public class TipoCliente extends JInternalFrame {
-
         //Usuario Simples
         private JButton btnPremiun;
         private JButton btnFree;
@@ -176,8 +179,7 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         private JTextField tfNDaCarteira;
         private GridBagConstraints cons;
 
-        public TipoCliente() {
-        }
+        public TipoCliente() {}
 
         public void initComponentsClienteProfi() {
             tipoCliente = new TipoCliente();
@@ -243,10 +245,7 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         ((BasicInternalFrameUI) frame.getUI()).setNorthPane(null);
         this.panelTipoUsuario.removeAll();
         this.panelTipoUsuario.add(frame, BorderLayout.CENTER);
-        this.panelTipoUsuario.repaint();
         this.panelTipoUsuario.revalidate();
-        this.repaint();
-        this.revalidate();
     }
 
     public JRadioButton getRbUsuarioProfi() {
@@ -260,4 +259,13 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     public TipoCliente getTipoCliente() {
         return tipoCliente;
     }
+
+    public JLabel getLbIDMostrar() {
+        return this.lbIDMostrar;
+    }
+
+    public JLabel getLbNomeUsuMostrar() {
+        return lbNomeUsuMostrar;
+    }
+
 }

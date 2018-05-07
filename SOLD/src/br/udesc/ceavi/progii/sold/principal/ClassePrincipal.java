@@ -32,7 +32,7 @@ public class ClassePrincipal implements Runnable {
         
         //Instancia a tela principal da aplicação
         FrameSistema frameSistema = new FrameSistema();
-        JInternalFramelModelo tela = new FrameCadastro2(frameSistema.getSize(),frameSistema);
+        JInternalFramelModelo tela = new FrameTelaInicial(frameSistema.getSize(),frameSistema);
         frameSistema.adicionarFrameInterno(tela);
         //Exibe a tela principal para o usuário
         frameSistema.setVisible(true);

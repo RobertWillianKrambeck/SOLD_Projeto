@@ -5,6 +5,7 @@ import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro1;
 import br.udesc.ceavi.progii.sold.view.frames.FrameCadastro2;
 import br.udesc.ceavi.progii.sold.view.frames.FrameLogin;
 import br.udesc.ceavi.progii.sold.view.frames.FrameTelaInicial;
+import br.udesc.ceavi.progii.sold.view.frames.FrameTelaPrincipal;
 import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,11 +27,11 @@ public class FrameLoginListeners {
      */
     private FrameSistema frameSistema;
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe FrameLogin
      */
     private JInternalFramelModelo frameAtual;
     /**
-     * Atributo que mantém a referencia do objeto da Classe alvo (TelaPrincipal)
+     * Atributo que mantém a referencia do objeto da Classe
      */
     private JInternalFramelModelo frameNovo;
 
@@ -80,40 +81,14 @@ public class FrameLoginListeners {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Login Feito");
-        }
-    }
-
-    class btnAnteriorActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);
-        }
-    }
-
-    class btnProximoActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameCadastro2(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);
-        }
-    }
-
-    class btnCancelarActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);
+            if (((FrameLogin) frameAtual).getTfUsuario().getText().equals("SOLD")) {
+                frameNovo = new FrameTelaPrincipal(frameSistema.getSize(), frameSistema);
+                frameSistema.adicionarFrameInterno(frameNovo);
+                frameAtual.dispose();
+                frameNovo.setVisible(true);
+            } else {
+                System.out.println("Login Errado!");
+            }
         }
     }
 }

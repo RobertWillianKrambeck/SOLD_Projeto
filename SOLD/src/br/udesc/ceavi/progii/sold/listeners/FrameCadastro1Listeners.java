@@ -8,13 +8,14 @@ import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * Class que define a implementação padrão para os Listeners referentes a tela
  * de cadastro1
  *
  * @author Gustavo Santos
- * @version 1.0
+ * @version 2.0
  * @since 23/04/2018
  */
 public class FrameCadastro1Listeners {
@@ -24,17 +25,24 @@ public class FrameCadastro1Listeners {
      * instanciado na classe ClassePrincipal
      */
     private FrameSistema frameSistema;
+
     /**
-     * Atributo que mantém a referencia do objeto da Classe telaLeilao
+     * Atributo que mantém a referencia do objeto da Classe FrameCadastro1
      */
-    private JInternalFramelModelo frameAtual;
+    private FrameCadastro1 frameCadastro1;
+
     /**
-     * Atributo que mantém a referencia do objeto da Classe alvo (TelaPrincipal)
+     * Atributo que mantém a referencia do objeto da Classe alvo (TelaInicial)
      */
     private JInternalFramelModelo frameNovo;
 
     /**
-     * O contrutor da classe
+     * Atributo que mantém a referencia do objeto da Classe Cadastro2
+     */
+    private FrameCadastro2 frameCadastro2;
+
+    /**
+     * O contrutor da classe Padrao
      *
      * @param frameSistema referencia do objeto instaciado na classe Classe
      * Principal
@@ -42,8 +50,23 @@ public class FrameCadastro1Listeners {
      */
     public FrameCadastro1Listeners(FrameSistema frameSistema,
             FrameCadastro1 frameAtual) {
+        //Recebe as referencia passadas pelo parametro do contrutor
         this.frameSistema = frameSistema;
-        this.frameAtual = frameAtual;
+        this.frameCadastro1 = frameAtual;
+        /**
+         * Esse treço de codigo permite a passagem de telas sem perder a
+         * referencia. Esse listener e FrameCadastro2Listerner DEVEM MANTER a
+         * referencia dos objetos criados (Cadastro1 e Cadastro2)e add
+         * frameCadastro2 (Cadastro2) ao FrameSistema
+         */
+        this.frameCadastro2 = new FrameCadastro2(frameSistema.getSize(), frameSistema,
+                frameCadastro1);
+        frameCadastro2.setVisible(false);
+        frameCadastro1.setVisible(true);
+        frameSistema.adicionarFrameInterno(frameCadastro2);
+
+        //Gera e Modifica o Id        
+        frameCadastro2.getLbIDMostrar().setText("" + frameCadastro1.gerarID());
         addCrudListenersButto();
     }
 
@@ -53,45 +76,74 @@ public class FrameCadastro1Listeners {
     private void addCrudListenersButto() {
         JButton bnt;
         //Add ação ao butao Anterior da classe
-        bnt = frameAtual.getBotoesDeAction().getBtAnterior();
-        bnt.addActionListener(new btnAnteriorActionListener());
+//        bnt = frameCadastro1.getBotoesDeAction().getBtAnterior();
+//        bnt.addActionListener(new actionListenerChamadaDeTelaInicial());
 
         //Add ação ao butao Cancelar da classe
-        bnt = frameAtual.getBotoesDeAction().getBtCancelar();
-        bnt.addActionListener(new btnCancelarActionListener());
-        
-        bnt = frameAtual.getBotoesDeAction().getBtProximo();
+        bnt = frameCadastro1.getBotoesDeAction().getBtCancelar();
+        bnt.addActionListener(new actionListenerChamadaDeTelaInicial());
+
+        //Add ação ao butao Proximo da classe
+        bnt = frameCadastro1.getBotoesDeAction().getBtProximo();
         bnt.addActionListener(new btnProximoActionListener());
     }
 
-
-    class btnAnteriorActionListener implements ActionListener {
+    /**
+     * Estes metodo ira chamar o FrameTelaInicial 1) Veriica se o ussuario
+     * realmente quer fecha, informando que ira perder o progresso <<Feito>> 2)
+     * Se 1) true entao fecha: FrameCadastro1 e FrameCadastro2; e Abre a
+     * TelaInicial <<Feito>>
+     */
+    class actionListenerChamadaDeTelaInicial implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);
+            int i = JOptionPane.showConfirmDialog(null, "Vocë Perderar Todo O Porcesso!",
+                    "Quer Fechar?", JOptionPane.YES_NO_OPTION);
+
+            if (i == JOptionPane.YES_OPTION) {
+                frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
+                frameSistema.adicionarFrameInterno(frameNovo);
+                frameCadastro1.setVisible(false);
+                frameNovo.setVisible(true);
+                frameCadastro2.dispose();
+                frameCadastro1.dispose();
+            }
         }
     }
 
+    /**
+     * Estes metodo ira chamar o FrameCadastro2 1)Tratamento de senha <<Feito>>
+     * 2)Tratamento de Nome <<Feito>>
+     */
     class btnProximoActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameCadastro2(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);        }
-    }
+            /**
+             * Tratamento de senha 1) Verificação se os campos estão preencidos
+             * <<Feito>> 2) Verificação se os campos são iguais <<Feito>>
+             */
+            if (frameCadastro1.senhaEqual()) {
+                /**
+                 * Tratamento de Nome 1) Verificação se os
+                 * campos(frameCadastro2.getTfNome()) <<Feito>> 2) Obtem
+                 * ele(frameCadastro2.getTfNome()) é o transfere para o seu
+                 * campo em FrameCadastro2(frameCadastro2.getLbNomeUsuMostrar())
+                 * <<Feito>>
+                 */
+                frameCadastro2.getLbNomeUsuMostrar().setText(frameCadastro1.getTfNome().getText());
 
-    class btnCancelarActionListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            frameNovo = new FrameTelaInicial(frameSistema.getSize(), frameSistema);
-            frameSistema.adicionarFrameInterno(frameNovo);
-            frameAtual.dispose();
-            frameNovo.setVisible(true);        }
+                frameCadastro1.setVisible(false);
+                frameCadastro2.setVisible(true);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Verifique Se O Campo Esta Preencido!\n"
+                        + "Verifique Se As Senha Sâo Iquais!", "Campo de Senha Com Erro!",
+                         JOptionPane.OK_OPTION);
+
+                frameCadastro1.limparSenha();
+            }
+        }
     }
 }

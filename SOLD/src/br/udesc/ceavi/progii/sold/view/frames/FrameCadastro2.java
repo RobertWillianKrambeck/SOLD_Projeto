@@ -1,3 +1,8 @@
+/**
+ * Tarefas:
+ * 1) Valor de Pacote modificar conforme os beneficios
+ */
+
 package br.udesc.ceavi.progii.sold.view.frames;
 
 import br.udesc.ceavi.progii.sold.listeners.FrameCadastro2Listeners;
@@ -10,6 +15,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -21,8 +28,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  * Esta classe é o modelo de JInternalFrame da Primeira Tela de Cadastro
+ *
  * @author Gustavo Santos
  * @version 2.0
  * @see 05/05/2018
@@ -43,14 +52,16 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     private LayoutManager layout;
     private TipoCliente tipoCliente;
     private JLabel lbNomeUsuMostrar;
+    private Font font;
+    private FrameCadastro2Listeners listenrsDaClasse;
 
-    public FrameCadastro2(Dimension dimension, FrameSistema frameSistema,FrameCadastro1 frameCadastro1) {
+    public FrameCadastro2(Dimension dimension, FrameSistema frameSistema, FrameCadastro1 frameCadastro1) {
         super(dimension, frameSistema);
         initComponents();
         personalize();
         addComponents();
-        FrameCadastro2Listeners listenrsDaClasse = new FrameCadastro2Listeners(frameSistema, 
-                this,frameCadastro1);
+        listenrsDaClasse = new FrameCadastro2Listeners(frameSistema,
+                this, frameCadastro1);
         super.addBotoesDeAcao();
         super.addFormulario(panelFormulario);
     }
@@ -132,7 +143,7 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     }
 
     private void personalize() {
-        Font font = new Font("Tahoma", 1, 14);
+        font = new Font("Tahoma", 1, 14);
         lbTipoUssuario.setFont(font);
         panelTipoUsuario.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         panelFormulario.setLayout(layout);
@@ -160,17 +171,34 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     }
 
     /**
-     * Esta classe interna serve para modificar o Panel do Tipo Endereco
-     * Ela controi um JInternalFrame
+     * Esta classe interna serve para modificar o Panel do Tipo Endereco Ela
+     * controi um JInternalFrame
+     *
      * @author Gustavo
      * @since 20/04/2018
-     * @version 1.0
+     * @version 2.0
      */
     public class TipoCliente extends JInternalFrame {
+
         //Usuario Simples
         private JButton btnPremiun;
         private JButton btnFree;
         private JButton btnOutros;
+
+        //Atributos de beneficios
+        private JPanel panelBeneficios;
+
+        private JRadioButton beneficioFree1;
+        private JRadioButton beneficioPremium1;
+        private ButtonGroup beneficio1;
+        private JRadioButton beneficioFree2;
+        private JRadioButton beneficioPremium2;
+        private ButtonGroup beneficio2;
+        private JRadioButton beneficioFree3;
+        private JRadioButton beneficioPremium3;
+        private ButtonGroup beneficio3;
+        //Tem como objetivo modificar o estado de seleção dos beneficios
+        public boolean beneficiosSelecionaveis = true;
 
         //Usuario Proficional
         private JLabel lbNDaCarteira;
@@ -179,7 +207,8 @@ public class FrameCadastro2 extends JInternalFramelModelo {
         private JTextField tfNDaCarteira;
         private GridBagConstraints cons;
 
-        public TipoCliente() {}
+        public TipoCliente() {
+        }
 
         public void initComponentsClienteProfi() {
             tipoCliente = new TipoCliente();
@@ -228,14 +257,188 @@ public class FrameCadastro2 extends JInternalFramelModelo {
 
         public void initComponentsClienteNormal() {
             tipoCliente = new TipoCliente();
-            this.setLayout(new GridLayout(1, 3));
+            this.setLayout(new GridBagLayout());
             btnFree = new JButton("Free");
-            btnPremiun = new JButton("Premiun");
+            btnPremiun = new JButton("Premium");
             btnOutros = new JButton("Outros Tipos");
-            this.add(btnFree);
-            this.add(btnPremiun);
-            this.add(btnOutros);
+
+            panelBeneficios = new JPanel(new GridLayout(3, 2));
+            font = new Font("Times New Roman", 1, 20);
+            //Grupo 1 de Beneficio
+            beneficio1 = new ButtonGroup();
+            beneficioFree1 = new JRadioButton("Benefício Free");
+            beneficioFree1.setFont(font);
+            beneficioPremium1 = new JRadioButton("Benefício Premium");
+            beneficioPremium1.setFont(font);
+            beneficio1.add(beneficioFree1);
+            beneficio1.add(beneficioPremium1);
+
+            //Grupo 2 de Beneficio
+            beneficio2 = new ButtonGroup();
+            beneficioFree2 = new JRadioButton("Benefício Free");
+            beneficioFree2.setFont(font);
+            beneficioPremium2 = new JRadioButton("Benefício Premium");
+            beneficioPremium2.setFont(font);
+            beneficio2.add(beneficioFree2);
+            beneficio2.add(beneficioPremium2);
+
+            //Grupo 3 de Beneficio
+            beneficio3 = new ButtonGroup();
+            beneficioFree3 = new JRadioButton("Benefício Free");
+            beneficioFree3.setFont(font);
+            beneficioPremium3 = new JRadioButton("Benefício Premium");
+            beneficioPremium3.setFont(font);
+            beneficio3.add(beneficioFree3);
+            beneficio3.add(beneficioPremium3);
+
+            //Add os beneficios ao panelBeneficio
+            panelBeneficios.add(beneficioFree1);
+            panelBeneficios.add(beneficioPremium1);
+            panelBeneficios.add(beneficioFree2);
+            panelBeneficios.add(beneficioPremium2);
+            panelBeneficios.add(beneficioFree3);
+            panelBeneficios.add(beneficioPremium3);
+
+            //Colocanco no JIntenoFrame
+            cons = new GridBagConstraints();
+            cons.gridx = 0;
+            cons.gridy = 0;
+            cons.ipadx = 50;
+            cons.ipady = 15;
+            this.add(btnFree, cons);
+
+            cons = new GridBagConstraints();
+            cons.gridx = 1;
+            cons.gridy = 0;
+            cons.ipadx = 50;
+            cons.ipady = 15;
+            this.add(btnPremiun, cons);
+
+            cons = new GridBagConstraints();
+            cons.gridx = 2;
+            cons.gridy = 0;
+            cons.ipadx = 50;
+            cons.ipady = 15;
+            this.add(btnOutros, cons);
+
+            cons = new GridBagConstraints();
+            cons.gridx = 0;
+            cons.gridy = 1;
+            cons.gridwidth = 3;
+            cons.insets = new Insets(15, 0, 0, 0);
+            this.add(panelBeneficios, cons);
             setPanelTipoUsuario(this);
+            addGrudListenersRadioButtonPacotes();
+        }
+
+        /**
+         * Este metodo tem como objetivo mudar o estado de selecionabilidade dos
+         * beneficios
+         *
+         * @param aux este inteiro permitarir o metodo saber qual ação tomar 0
+         * tornar dos os beneficos não selecionaveis 1 tornar dos os beneficos
+         * selecionaveis
+         *
+         * Estrutura 
+         * 1) o metodo recebe e "avalia" o parametro recebido, tal 
+         * avaliação esta a CIMA !!!Feito!!!
+         * 2) o metodo muda o estado de selecao dos beneficios !!!Feito!!!
+         */
+        private void beneficiosSelecionaveis(int aux) {
+            if (aux == 0 && beneficiosSelecionaveis) {
+                beneficiosSelecionaveis = false;
+                beneficioFree1.setEnabled(beneficiosSelecionaveis);
+                beneficioFree2.setEnabled(beneficiosSelecionaveis);
+                beneficioFree3.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium1.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium2.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium3.setEnabled(beneficiosSelecionaveis);
+            } else if (aux == 1 && !beneficiosSelecionaveis) {
+                beneficiosSelecionaveis = true;
+                beneficioFree1.setEnabled(beneficiosSelecionaveis);
+                beneficioFree2.setEnabled(beneficiosSelecionaveis);
+                beneficioFree3.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium1.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium2.setEnabled(beneficiosSelecionaveis);
+                beneficioPremium3.setEnabled(beneficiosSelecionaveis);
+            }
+        }
+
+        /**
+         * Este metodo tem como objetivo atribuir açoes de clique aos botoes dos
+         * pacotes! 1) Tornar todos os radios button ineditaveis, isso se deve
+         * ao fato do pacote vai decidir os beneficios !!!Feito!!! 2) atributir
+         * as açoes aos repetivos butoes !!!Feito!!!
+         */
+        public void addGrudListenersRadioButtonPacotes() {
+            beneficiosSelecionaveis(0);
+            JButton btn;
+            btn = btnFree;
+            btn.addActionListener(new tipoClienteActionListenerFreePackage());
+            btn = btnPremiun;
+            btn.addActionListener(new tipoClienteActionListenerPremiunPackage());
+            btn = btnOutros;
+            btn.addActionListener(new tipoClienteActionListenerOutrosPackage());
+        }
+
+        /**
+         * Este metodo é a açao do butao Premium 1) Tornar apenas o butao
+         * premium desativado !!!Feito!!! 2) Setar os beneficios do pacote
+         * premium !!!Feito!!! 3) Manter a não selecionabilidade do beneficios
+         */
+        private class tipoClienteActionListenerPremiunPackage implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                beneficiosSelecionaveis(0);
+                btnPremiun.setEnabled(false);
+                btnOutros.setEnabled(true);
+                btnFree.setEnabled(true);
+                beneficioPremium1.setSelected(true);
+                beneficioPremium2.setSelected(true);
+                beneficioPremium3.setSelected(true);
+            }
+        }
+
+        /**
+         * Este metodo é a açao do butao Outros 1) Tornar apenas o butao Outros
+         * desativado !!!Feito!!! 2) Tornar todos os benificios selecionavaeis
+         * !!!Feito!!!
+         */
+        private class tipoClienteActionListenerOutrosPackage implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                beneficiosSelecionaveis(1);
+                btnPremiun.setEnabled(true);
+                btnOutros.setEnabled(false);
+                btnFree.setEnabled(true);
+                beneficioFree1.setEnabled(true);
+                beneficioFree2.setEnabled(true);
+                beneficioFree3.setEnabled(true);
+                beneficioPremium1.setEnabled(true);
+                beneficioPremium2.setEnabled(true);
+                beneficioPremium3.setEnabled(true);
+            }
+        }
+
+        /**
+         * Este metodo é a açao do butao Free 1) Tornar apenas o butao Free
+         * desativado !!!Feito!!! 2) Setar os beneficios do pacote Free
+         * !!!Feito!!!
+         */
+        private class tipoClienteActionListenerFreePackage implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                beneficiosSelecionaveis(0);
+                btnPremiun.setEnabled(true);
+                btnOutros.setEnabled(true);
+                btnFree.setEnabled(false);
+                beneficioFree1.setSelected(true);
+                beneficioFree2.setSelected(true);
+                beneficioFree3.setSelected(true);
+            }
         }
     }
 
@@ -267,5 +470,4 @@ public class FrameCadastro2 extends JInternalFramelModelo {
     public JLabel getLbNomeUsuMostrar() {
         return lbNomeUsuMostrar;
     }
-
 }

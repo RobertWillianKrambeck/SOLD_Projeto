@@ -59,7 +59,7 @@ public class FrameCadastro2Listeners {
         this.frameCadastro1 = frameCadastro1;
         this.frameCadastro2 = frameCadastro2;
         addCrudListenersButto();
-        addCrudListenersRadioButto();
+        addCrudListenersRadioButton();
     }
 
     /**
@@ -74,28 +74,16 @@ public class FrameCadastro2Listeners {
         //Add ação ao butao Cancelar da classe
         bnt = frameCadastro2.getBotoesDeAction().getBtCancelar();
         bnt.addActionListener(new btnCancelarActionListener());
-        
+
         bnt = frameCadastro2.getBotoesDeAction().getBtProximo();
         bnt.addActionListener(new btnProximoActionListener());
-    }
-
-    /**
-     * Método que adiciona os Listener para aos radioButton do formulário
-     */
-    private void addCrudListenersRadioButto() {
-        JRadioButton rButton;
-        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioNormal();
-        rButton.addActionListener(new radioButtonNormalActionListener());
-        
-        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioProfi();
-        rButton.addActionListener(new radioButtonProfiActionListener());
     }
 
     /**
      * Estes metodo ira chamar o frameCadastro1
      */
     class btnAnteriorActionListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             frameCadastro2.setVisible(false);
@@ -108,7 +96,7 @@ public class FrameCadastro2Listeners {
      * Estes metodo ira chamar o FrameTelaPrincipal
      */
     class btnProximoActionListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             frameNovo = new FrameTelaPrincipal(frameSistema.getSize(), frameSistema);
@@ -123,7 +111,7 @@ public class FrameCadastro2Listeners {
      * Estes metodo ira chamar o FrameTelaInicial
      */
     class btnCancelarActionListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = JOptionPane.showConfirmDialog(null, "Vocë Perderar Todo O Porcesso!",
@@ -138,17 +126,29 @@ public class FrameCadastro2Listeners {
             }
         }
     }
-    
+
+    /**
+     * Método que adiciona os Listener para aos radioButton do formulário
+     */
+    private void addCrudListenersRadioButton() {
+        JRadioButton rButton;
+        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioNormal();
+        rButton.addActionListener(new radioButtonNormalActionListener());
+
+        rButton = ((FrameCadastro2) frameCadastro2).getRbUsuarioProfi();
+        rButton.addActionListener(new radioButtonProfiActionListener());
+    }
+
     class radioButtonNormalActionListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             ((FrameCadastro2) frameCadastro2).getTipoCliente().initComponentsClienteNormal();
         }
     }
-    
+
     class radioButtonProfiActionListener implements ActionListener {
-        
+
         @Override
         public void actionPerformed(ActionEvent e) {
             ((FrameCadastro2) frameCadastro2).getTipoCliente().initComponentsClienteProfi();

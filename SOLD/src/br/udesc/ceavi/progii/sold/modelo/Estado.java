@@ -45,5 +45,4 @@ public enum Estado {
     public String toString() {
         return this.estado;
     }
-    
 }

@@ -1,18 +1,13 @@
 package br.udesc.ceavi.progii.sold.view.frames;
 
 import br.udesc.ceavi.progii.sold.modelo.Estado;
-import br.udesc.ceavi.progii.sold.principal.FrameSistema;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.HeadlessException;
 import java.awt.Label;
 import java.awt.LayoutManager;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -57,14 +52,13 @@ public class FrameEndereco {
     }
 
     private void initComponents() {
-        //
-        lbCep = new Label("Cep*");
-        lbLogradouro = new Label("Operador*");
-        lbNumero = new Label("Numero*");
-        lbComplemento = new Label("Complemento*");
-        lbBairro = new Label("Bairro*");
-        lbCidade = new Label("Cidade*");
-        lbSigla = new Label("Sigla*");
+        lbCep = new Label("Cep:*");
+        lbLogradouro = new Label("Logradouro:*");
+        lbNumero = new Label("Numero:*");
+        lbComplemento = new Label("Complemento:*");
+        lbBairro = new Label("Bairro:*");
+        lbCidade = new Label("Cidade:*");
+        lbSigla = new Label("Sigla:*");
         lbUF = new Label("UF*");
         frameInternoPrincipal = new JInternalFrame();
         tfCep = new JTextField();

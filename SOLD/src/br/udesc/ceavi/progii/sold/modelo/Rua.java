@@ -5,7 +5,6 @@ package br.udesc.ceavi.progii.sold.modelo;
  * @author Robert
  */
 public class Rua {
-    
     private String nome;
     private int id;
 
@@ -25,10 +24,4 @@ public class Rua {
     public int getId() {
         return id;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    
 }

@@ -8,6 +8,7 @@ import br.udesc.ceavi.progii.sold.view.frames.JInternalFramelModelo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  * Class que define a implementação padrão para os Listeners referentes a tela
@@ -85,7 +86,8 @@ public class FrameLoginListeners {
                 frameAtual.dispose();
                 frameNovo.setVisible(true);
             } else {
-                System.out.println("Login Errado!");
+                JOptionPane.showMessageDialog(frameAtual, "Senha Ou Usuario Errado "
+                        + "\nSe não for Cadastrado Registre", "Erro", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

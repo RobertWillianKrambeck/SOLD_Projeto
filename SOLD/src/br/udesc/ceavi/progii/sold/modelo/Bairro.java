@@ -8,17 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bairro {
-    
+    private int id;
     private String cep;
     private String nome;
-    private List<Rua> ruas = new ArrayList<Rua>();
+    private List<Rua> ruas;
 
     public Bairro() {
     }
 
     public Bairro(String cep, String nome) {
+        this.ruas = new ArrayList<>();
         this.cep = cep;
         this.nome = nome;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCep() {

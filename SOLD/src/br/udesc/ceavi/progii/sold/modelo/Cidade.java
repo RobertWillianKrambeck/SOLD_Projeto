@@ -12,10 +12,11 @@ public class Cidade {
     private int id;
     private String nomeDaCidade;
     private String sigla;
-    private String uf;
-    private List<Bairro> bairros = new ArrayList<Bairro>();
+    private Estado uf;
+    private List<Bairro> bairros;
 
-    public Cidade(int id, String nomeDaCidade, String sigla, String uf) {
+    public Cidade(int id, String nomeDaCidade, String sigla, Estado uf) {
+        this.bairros = new ArrayList<>();
         this.id = id;
         this.nomeDaCidade = nomeDaCidade;
         this.sigla = sigla;
@@ -46,11 +47,11 @@ public class Cidade {
         this.sigla = sigla;
     }
 
-    public String getUf() {
+    public Estado getUf() {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(Estado uf) {
         this.uf = uf;
     }
 
@@ -61,6 +62,4 @@ public class Cidade {
     public void setBairros(List<Bairro> Bairros) {
         this.bairros = Bairros;
     }
-    
-    
 }

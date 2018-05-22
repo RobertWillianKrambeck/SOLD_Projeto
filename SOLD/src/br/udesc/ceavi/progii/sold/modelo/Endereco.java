@@ -6,14 +6,14 @@ package br.udesc.ceavi.progii.sold.modelo;
  */
 public class Endereco {
     
+    private int id;
     private Cidade cidade;
     private int numeroCasa;
+    private String Complemtento;
 
-    public Endereco(Cidade cidade, int numeroCasa) {
-        this.cidade = cidade;
-        this.numeroCasa = numeroCasa;
+    public int getId() {
+        return id;
     }
-    
     public Cidade getCidade() {
         return cidade;
     }
@@ -21,7 +21,6 @@ public class Endereco {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-    
 
     public int getNumeroCasa() {
         return numeroCasa;
@@ -30,5 +29,12 @@ public class Endereco {
     public void setNumeroCasa(int numeroCasa) {
         this.numeroCasa = numeroCasa;
     }
-    
+
+    public void setComplemtento(String Complemtento) {
+        this.Complemtento = Complemtento;
+    }
+
+    public String getComplemtento() {
+        return Complemtento;
+    }
 }

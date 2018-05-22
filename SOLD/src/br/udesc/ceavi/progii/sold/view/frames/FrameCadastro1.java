@@ -280,7 +280,6 @@ public class FrameCadastro1 extends JInternalFramelModelo {
     public int gerarID() {
         int num;
         num = (int) (Math.random() * 10000000);
-        System.out.println(num);
         tfID.setText("" + num);
         return num;
     }

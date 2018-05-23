@@ -7,9 +7,9 @@ package br.udesc.ceavi.progii.sold.modelo;
 public class Servico {
     
     private int id;
-    private Endereco localizacao;
     private String nome;
     private float valorDeInicial;
+    private Endereco localizacao;
     private TipoServico categoriaServico;
 
     public Servico(int id, Endereco localizacao, String nome, float valorDeInicial, TipoServico categoriaServico) {

@@ -81,6 +81,4 @@ public class Pagamento {
     public void setValor(float valor) {
         this.valor = valor;
     }
-    
-    
 }

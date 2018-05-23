@@ -4,7 +4,7 @@ package br.udesc.ceavi.progii.sold.modelo;
  *
  * @author Robert
  */
-public class Pessoa {
+public abstract class Pessoa {
     
     private String cpf;
     private String email;

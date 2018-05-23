@@ -6,18 +6,18 @@ package br.udesc.ceavi.progii.sold.modelo;
  */
 public class Cliente extends Pessoa{
     
-    private boolean tipoCliente;
+    private TipoCliente tipoCliente;
 
-    public Cliente(boolean tipoCliente, String cpf, String email, String nome, String telefone) {
+    public Cliente(TipoCliente tipoCliente, String cpf, String email, String nome, String telefone) {
         super(cpf, email, nome, telefone);
         this.tipoCliente = tipoCliente;
     }
     
-    public boolean getTipoCliente() {
+    public TipoCliente getTipoCliente() {
         return tipoCliente;
     }
 
-    public void setTipoCliente(boolean tipoCliente) {
+    public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     } 
     

@@ -28,21 +28,14 @@ public class Produto {
     }
 
     public Produto() {
-        //Gera O ID Unico (Começo 100)
-        setId();
     }
 
     public int getId() {
         return id;
     }
 
-    /**
-     * Este metodo gera um id unico para cada produto
-     */
-    public final void setId() {
-        String aux = "100";
-        aux += ""+ (int) ((Math.random() * 100000));
-        this.id = Integer.getInteger(aux);
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Endereco getLocalizacao() {

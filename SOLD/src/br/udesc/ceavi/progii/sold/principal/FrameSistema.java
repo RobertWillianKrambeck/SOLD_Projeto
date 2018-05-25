@@ -15,8 +15,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  * Classe FrameSistema é o casco do sistema
  *
@@ -59,17 +59,16 @@ public class FrameSistema extends JFrame {
     //Classe Image onde tem as imagens
     private Image imagem;
 
-    //TextFild para a barra de pesquisa
-    private JTextField tfBarraDePesquisa;
-
     //Cor
     private Color cor;
 
-    //Butão Busca
-    private JLabel btBusca;
+    //Panel Usuario
+    private JPanel panelUsuario;
 
     //Constante ussada no layout
-    GridBagConstraints cons;
+    private GridBagConstraints cons;
+
+    private String usuario;
 
     /**
      * Construtor da classe Frame Sistema.
@@ -82,11 +81,8 @@ public class FrameSistema extends JFrame {
 
         //Métodos responsáveis pela construção da GUI da tela principal
         initializeDesktopPane();
-        initComponents();        
+        initComponents();
         addComponents();
-        adicionaMenuPrincipal();
-        personalizarComponents();
-
         //Define a dimensão da tela principal
         super.setSize(dimensaoTelaPrincipal);
 
@@ -123,6 +119,13 @@ public class FrameSistema extends JFrame {
 
         //Instancia a barra de menus
         menuPrincipal = new MenuPrincipal(this);
+        Dimension menuTamanho = new Dimension(400, 30);
+        //Personalização Panel de Menu
+        panelMenu.setPreferredSize(menuTamanho);
+        panelMenu.setSize(menuTamanho);
+        panelMenu.setMaximumSize(menuTamanho);
+        panelMenu.setMinimumSize(menuTamanho);
+        panelMenu.setBackground(cor);
 
         //adiciona a barra de menu na panelMenu
         panelMenu.add(menuPrincipal);
@@ -131,9 +134,9 @@ public class FrameSistema extends JFrame {
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 1;
-        cons.gridwidth = 10;
-        cons.fill = GridBagConstraints.HORIZONTAL;
-        cons.insets = new Insets(5, 0, 0, 5);
+        cons.gridwidth = 3;
+        cons.fill = GridBagConstraints.BOTH;
+//        cons.insets = new Insets(5, 0, 0, 5);
         panelCabecario.add(panelMenu, cons);
 
     }
@@ -154,6 +157,9 @@ public class FrameSistema extends JFrame {
      * Método que cria as instância de alguns elementos
      */
     private void initComponents() {
+        //Instancia da class imagem
+        imagem = new Image();
+
         //Cria uma instâncioa do JPanel panelCabecario e defime um tamanho
         panelCabecario = new JPanel();
         dimensionCabecario = new Dimension(this.contentPane.getWidth(), 135);
@@ -166,18 +172,22 @@ public class FrameSistema extends JFrame {
 
         //Instancia de JLabel e ImageIcon e set a imagem
         lbLogo = new JLabel();
-
-        //Instancia da "Barra de Busca"
-        tfBarraDePesquisa = new JTextField();
+        //Set Imagem do logo
+        lbLogo.setIcon(imagem.getImageLogo());
 
         //Definição do Tamanho da TelaPrincipal
         dimensaoTelaPrincipal = new Dimension(800, 654);
 
-        //Instancia do Butao de Busca;
-        btBusca = new JLabel();
-
-        //Instancia da class imagem
-        imagem = new Image();
+        //Instancia do JPanel de Usuario
+        panelUsuario = new JPanel();
+        panelUsuario.setPreferredSize(new Dimension(155, 80));
+        panelUsuario.setBackground(cor);
+        BorderFactory border;
+        usuario = "Gustavo";
+        cor = new Color(255, 255, 255);
+        panelUsuario.setBorder(javax.swing.BorderFactory.createTitledBorder(null, usuario,
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 11), cor));
     }
 
     /**
@@ -187,56 +197,35 @@ public class FrameSistema extends JFrame {
     private void addComponents() {
         //Definição do Layout de Cabeçario como GridBagLayout
         panelCabecario.setLayout(new GridBagLayout());
-        //Add os elementos ao Cabeçario
-
+        /**
+         * Add os elementos ao Cabeçario Add os elementos ao Cabeçario Add os
+         * elementos ao Cabeçario
+         */
         //Add o Logo ao Cabeçario
         cons = new GridBagConstraints();
         cons.gridx = 0;
         cons.gridy = 0;
+        cons.insets = new Insets(0, -125, 0, 0);
         panelCabecario.add(lbLogo, cons);
 
-        //Add A Barra de Pesquisa ao Cabeçario
-        cons = new GridBagConstraints();
-        cons.gridx = 1;
-        cons.gridy = 0;
-        panelCabecario.add(tfBarraDePesquisa, cons);
-
-        //Add o butao de Busca ao Cabeçario
+        //Add O Panel De Usuario
         cons = new GridBagConstraints();
         cons.gridx = 2;
         cons.gridy = 0;
-        panelCabecario.add(btBusca, cons);
+        cons.insets = new Insets(0, 0, -20, -170);
+        cons.anchor = GridBagConstraints.NORTHEAST;
+        panelCabecario.add(panelUsuario, cons);
 
-        //Add o Cabeçario ao contener da Classe
-        contentPane.add(panelCabecario, BorderLayout.PAGE_START);
-
-        //Add o Rodape ao contener da Classe
-        contentPane.add(panelRodape, BorderLayout.SOUTH);
-    }
-
-    /**
-     * Este metodo tem como objetivo personalizar os compomentes
-     */
-    private void personalizarComponents() {
-        //Cor,Borda e tamanho da Barra de Busca
-        cor = new Color(250, 226, 110);
-        tfBarraDePesquisa.setBorder(BorderFactory.createLineBorder(cor, 4));
-        tfBarraDePesquisa.setPreferredSize(new Dimension(450, 27));
         //Cor do Cabecario
         cor = new Color(24, 24, 24);
         panelCabecario.setBackground(cor);
+        //Add o Cabeçario ao contener da Classe
+        contentPane.add(panelCabecario, BorderLayout.PAGE_START);
+
         //Cor do Rodapé
         panelRodape.setBackground(cor);
-
-        //Set Imagem do logo
-        lbLogo.setIcon(imagem.getImageLogo());
-
-        //Add Icone ao Butao de Busca
-        btBusca.setIcon(imagem.getImageIcon());
-        
-        //Personalização Panel de Menu
-        panelMenu.setPreferredSize(new Dimension(WIDTH, 30));
-        panelMenu.setBackground(cor);
-        //panelMenu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        //Add o Rodape ao contener da Classe
+        contentPane.add(panelRodape, BorderLayout.SOUTH);
+        adicionaMenuPrincipal();
     }
 }

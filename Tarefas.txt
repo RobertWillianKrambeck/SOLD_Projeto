@@ -4,11 +4,11 @@ Por hora falta:
 3. Construir o listeners da classe FrameDiscricaoProduto; <<Gustavo>> Feito
 4. Construir o listeners para os Botões de Tipo Cliente; <<Gustavo>> Feito
 5. Definir os benefícios do Pacote Premium;
-6. Criar Tela de Escolha de Pacotes; <<Gustavo>>
+6. Criar Tela de Escolha de Pacotes; <<Gustavo>> Feito Basta Chamar a Tela de Cadastro2 denovo!
 7. Construir o Rodapé; <<Robert>>
 8. Construir Pagina de Cadastro de Produto/Serviços; <<Gustavo>>
 9. Construir Pagina de Usuário;
-10. Modificar O Cabeçalho (Excluir barra de Pesquisa e Criar Campo usuário cadastrado); <<Gustavo>>
+10. Modificar O Cabeçalho (Excluir barra de Pesquisa e Criar Campo usuário cadastrado); <<Gustavo>> Feito
 11. Add mais coisa a Tela Principal;
 12. Criar Tela de Pagamento de Produto; <<Gustavo>>
 13. Criar Uma “Nota Fiscal Modelo”;

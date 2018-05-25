@@ -137,7 +137,6 @@ public class MenuPrincipal extends JMenuBar {
         menuBar.add(menuSuporte);
         menuBar.add(menuFerramentas);
         menuBar.add(menuAjuda);
-        menuBar.setForeground(corPreto);
         menuBar.setBackground(corPreto);
     }
 

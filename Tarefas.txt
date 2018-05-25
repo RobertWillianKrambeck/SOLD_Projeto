@@ -1,0 +1,26 @@
+Por hora falta: 
+1. O listeners do menu; <<Robert>>
+2. Concertar o listeners da telaPrincipal para ela chamar a tela de descrição do produto;<<Gustavo>> Feito
+3. Construir o listeners da classe FrameDiscricaoProduto; <<Gustavo>> Feito
+4. Construir o listeners para os Botões de Tipo Cliente; <<Gustavo>> Feito
+5. Definir os benefícios do Pacote Premium;
+6. Criar Tela de Escolha de Pacotes; <<Gustavo>>
+7. Construir o Rodapé; <<Robert>>
+8. Construir Pagina de Cadastro de Produto/Serviços; <<Gustavo>>
+9. Construir Pagina de Usuário;
+10. Modificar O Cabeçalho (Excluir barra de Pesquisa e Criar Campo usuário cadastrado); <<Gustavo>>
+11. Add mais coisa a Tela Principal;
+12. Criar Tela de Pagamento de Produto; <<Gustavo>>
+13. Criar Uma “Nota Fiscal Modelo”;
+14. Programar Sistema de Transferência de dados da Tela Principal (onde será escolhido o produto) para a discrição (onde esse será exposto ao usuário) e depois para o Leilão;
+15. Construir logica de lances, arremate e desistência na Tela de Leilão;
+16. Construir um cronômetro na Tela de Leilão;
+17. Construir campo que indica quantos participam do Leilão;
+
+//Banco de Dados
+18. Modelar Banco de Dados; <<Mayron>>
+19. Construir conexão com o Banco de Dados; <<Mayron>>
+20. Cadastrar no Banco Usuário aleatórios;
+21. Criar uma “Simulação” do sistema de leilão como os usuários cadastrados em Banco de Dados; 
+22. Pré-Inicializar a Pagina inicial com os dados do Banco de Dados
+23. Conectar o Sistema de Login ao Banco de Dados 

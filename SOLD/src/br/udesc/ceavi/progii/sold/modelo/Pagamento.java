@@ -7,23 +7,18 @@ import java.util.Date;
  * @author Robert
  */
 public class Pagamento {
-   
-    private Cliente cliente;
-    private Date  dataVencimento;
-    private int id;
-    private String metodoDePagamento;
-    private NotaFiscal notaFiscal;
-    private Produto produto;
-    private float valor;
 
-    public Pagamento(Cliente cliente, Date dataVencimento, int id, String metodoDePagamento, NotaFiscal notaFiscal, Produto produto, float valor) {
+    private Cliente cliente;
+    private Date dataVencimento;
+    private int id;
+    private NotaFiscal notaFiscal;
+    private final Negociacao negociacaoEmPagamento;
+
+    public Pagamento(Cliente cliente, Date dataVencimento, int id, Negociacao negociacaoEmPagamento) {
         this.cliente = cliente;
         this.dataVencimento = dataVencimento;
         this.id = id;
-        this.metodoDePagamento = metodoDePagamento;
-        this.notaFiscal = notaFiscal;
-        this.produto = produto;
-        this.valor = valor;
+        this.negociacaoEmPagamento = negociacaoEmPagamento;
     }
 
     public Cliente getCliente() {
@@ -50,14 +45,6 @@ public class Pagamento {
         this.id = id;
     }
 
-    public String getMetodoDePagamento() {
-        return metodoDePagamento;
-    }
-
-    public void setMetodoDePagamento(String metodoDePagamento) {
-        this.metodoDePagamento = metodoDePagamento;
-    }
-
     public NotaFiscal getNotaFiscal() {
         return notaFiscal;
     }
@@ -66,19 +53,12 @@ public class Pagamento {
         this.notaFiscal = notaFiscal;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public Negociacao getNegociacaoEmPagamento() {
+        return negociacaoEmPagamento;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
+    @Override
+    public String toString() {
+        return "Data Vencimento: " + dataVencimento;
     }
 }

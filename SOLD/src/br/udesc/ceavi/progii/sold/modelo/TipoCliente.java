@@ -10,14 +10,14 @@ public enum TipoCliente {
     FREE("Free"),
     OUTROS("Outros");
     
-    private final String cliente;
+    private final String tipoCliente;
 
     private TipoCliente(String cliente) {
-        this.cliente = cliente;
+        this.tipoCliente = cliente;
     }
 
     @Override
     public String toString() {
-        return this.cliente;
+        return this.tipoCliente;
     }
 }

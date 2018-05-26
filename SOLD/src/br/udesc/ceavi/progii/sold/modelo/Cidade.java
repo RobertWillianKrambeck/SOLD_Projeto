@@ -62,4 +62,9 @@ public class Cidade {
     public void setBairros(List<Bairro> Bairros) {
         this.bairros = Bairros;
     }
+
+    @Override
+    public String toString() {
+        return "Cidade: " + nomeDaCidade + "\nEstado: " + uf.toString() + "\nBairro:" + bairros.toString();
+    }
 }

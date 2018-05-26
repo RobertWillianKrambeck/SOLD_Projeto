@@ -6,7 +6,7 @@ package br.udesc.ceavi.progii.sold.modelo;
  * @version 1.5
  */
 public class Produto {
-    
+
     private int id;
     private Endereco localizacao;
     private String nome;
@@ -19,6 +19,16 @@ public class Produto {
     public Produto(int id, Endereco localizacao, String nome, float valorDeArremate, float valorDeInicial, EstadoDoProduto estadoDoProduto, Cliente donoDoProduto, TipoProduto categoria) {
         this.id = id;
         this.localizacao = localizacao;
+        this.nome = nome;
+        this.valorDeArremate = valorDeArremate;
+        this.valorDeInicial = valorDeInicial;
+        this.estadoDoProduto = estadoDoProduto;
+        this.donoDoProduto = donoDoProduto;
+        this.categoria = categoria;
+    }
+
+    public Produto(int id, String nome, float valorDeArremate, float valorDeInicial, EstadoDoProduto estadoDoProduto, Cliente donoDoProduto, TipoProduto categoria) {
+        this.id = id;
         this.nome = nome;
         this.valorDeArremate = valorDeArremate;
         this.valorDeInicial = valorDeInicial;
@@ -89,5 +99,14 @@ public class Produto {
     public void setCategoria(TipoProduto categoria) {
         this.categoria = categoria;
     }
-    
+
+    @Override
+    public String toString() {
+        return "#######################Produto#######################"
+                + "\nNome: " + nome + "              ID: " + id
+                //                + "\nLocalizacao: " + localizacao.toString()
+                + "\nValor de Arremate: " + valorDeArremate + "R$" + "   Valor de Inicial: " + valorDeInicial + "R$"
+                + "\nEstado Do Produto: " + estadoDoProduto.toString() + "\nCategoria: " + categoria.toString() + "\n";
+    }
+
 }

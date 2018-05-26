@@ -4,8 +4,8 @@ package br.udesc.ceavi.progii.sold.modelo;
  *
  * @author Robert
  */
-public class Profissional extends Pessoa{
-    
+public class Profissional extends Pessoa {
+
     private String descricao;
     private int numeroDaCarteira;
 
@@ -28,6 +28,11 @@ public class Profissional extends Pessoa{
     public void setNumeroDaCarteira(int numeroDaCarteira) {
         this.numeroDaCarteira = numeroDaCarteira;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Profissional:"
+                + "\nDescricao: " + descricao
+                + "\nNumero Da Carteira: " + numeroDaCarteira;
+    }
 }

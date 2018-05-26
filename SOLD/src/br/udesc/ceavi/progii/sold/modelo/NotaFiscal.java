@@ -6,30 +6,26 @@ package br.udesc.ceavi.progii.sold.modelo;
  */
 public class NotaFiscal {
 
-    private int codigo;
-    private double valorProduto;
+    private int id;
+    private Negociacao negociacao;
 
-    public NotaFiscal(int codigo, double valorProduto) {
-        this.codigo = codigo;
-        this.valorProduto = valorProduto;
+    public NotaFiscal(int id, Negociacao negociacao) {
+        this.id = id;
+        this.negociacao = negociacao;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public double getValorProduto() {
-        return valorProduto;
+    @Override
+    public String toString() {
+        return "NotaFiscal: " + "\nID:" + id
+                + "\nNegociacao: " + negociacao.toString();
     }
 
-    public void setValorProduto(double valorProduto) {
-        this.valorProduto = valorProduto;
-    }
-    
-    
-    
 }

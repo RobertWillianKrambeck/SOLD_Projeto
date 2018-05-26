@@ -6,7 +6,7 @@ package br.udesc.ceavi.progii.sold.modelo;
  */
 public class Rua {
     private String nome;
-    private int id;
+    private final int id;
 
     public Rua(String nome, int id) {
         this.nome = nome;

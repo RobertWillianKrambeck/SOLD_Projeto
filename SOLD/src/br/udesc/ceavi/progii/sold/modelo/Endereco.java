@@ -25,7 +25,7 @@ public class Endereco {
     public int getNumeroCasa() {
         return numeroCasa;
     }
-
+ 
     public void setNumeroCasa(int numeroCasa) {
         this.numeroCasa = numeroCasa;
     }
@@ -37,4 +37,11 @@ public class Endereco {
     public String getComplemtento() {
         return Complemtento;
     }
+
+    @Override
+    public String toString() {
+        return "Endereco: Cidade: " + cidade.toString() + ", Numero:" + numeroCasa + "Complemtento:" + Complemtento;
+    }
+    
+    
 }

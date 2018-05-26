@@ -10,7 +10,8 @@ Por hora falta:
 9. Construir Pagina de Usuário;
 10. Modificar O Cabeçalho (Excluir barra de Pesquisa e Criar Campo usuário cadastrado); <<Gustavo>> Feito
 11. Add mais coisa a Tela Principal;
-12. Criar Tela de Pagamento de Produto; <<Gustavo>>
+12. Criar Tela de Pagamento de Produto; <<Gustavo>> Feito
+12.1 Criar Os Literners da Tela de Pagamento de Produto;
 13. Criar Uma “Nota Fiscal Modelo”;
 14. Programar Sistema de Transferência de dados da Tela Principal (onde será escolhido o produto) para a discrição (onde esse será exposto ao usuário) e depois para o Leilão;
 15. Construir logica de lances, arremate e desistência na Tela de Leilão;

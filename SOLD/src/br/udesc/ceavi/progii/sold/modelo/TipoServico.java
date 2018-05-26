@@ -21,8 +21,4 @@ public enum TipoServico {
     public String toString() {
         return this.servico;
     }
-    
-    
-    
-    
 }

@@ -20,5 +20,10 @@ public class Cliente extends Pessoa{
     public void setTipoCliente(TipoCliente tipoCliente) {
         this.tipoCliente = tipoCliente;
     } 
+
+    @Override
+    public String toString() {
+        return super.toString() + "    Pacote:" + this.tipoCliente.toString();
+    }
     
 }

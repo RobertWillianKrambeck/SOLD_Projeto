@@ -11,7 +11,7 @@ public enum EstadoDoProduto {
     LEILAO("Leilão"),
     SENDOPAGO("Sendo pago");
     
-    private final String estadoProduto;
+    private String estadoProduto;
 
     private EstadoDoProduto(String estadoProduto) {
         this.estadoProduto = estadoProduto;

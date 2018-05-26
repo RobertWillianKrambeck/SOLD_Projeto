@@ -1,7 +1,14 @@
 package br.udesc.ceavi.progii.sold.principal;
 
+import br.udesc.ceavi.progii.sold.modelo.Cliente;
+import br.udesc.ceavi.progii.sold.modelo.EstadoDoProduto;
+import br.udesc.ceavi.progii.sold.modelo.Negociacao;
+import br.udesc.ceavi.progii.sold.modelo.Pagamento;
+import br.udesc.ceavi.progii.sold.modelo.Produto;
+import br.udesc.ceavi.progii.sold.modelo.TipoCliente;
+import br.udesc.ceavi.progii.sold.modelo.TipoProduto;
 import br.udesc.ceavi.progii.sold.view.frames.*;
-
+import java.util.Date;
 
 /**
  * Classe Principal do Pacote
@@ -13,7 +20,7 @@ import br.udesc.ceavi.progii.sold.view.frames.*;
 public class ClassePrincipal implements Runnable {
 
     public static void main(String[] args) {
-        
+
         //Instancia a classe principal da aplicação
         ClassePrincipal telaPrincipal = new ClassePrincipal();
 
@@ -28,9 +35,7 @@ public class ClassePrincipal implements Runnable {
      * Método responsável pela execução da Thread principal da aplicação.
      */
     @Override
-    public void run() {
-        
-        //Instancia a tela principal da aplicação
+    public void run() { //Instancia a tela principal da aplicação
         FrameSistema frameSistema = new FrameSistema();
         JInternalFramelModelo tela = new FrameTelaInicial(frameSistema.getSize(),frameSistema);
         frameSistema.adicionarFrameInterno(tela);

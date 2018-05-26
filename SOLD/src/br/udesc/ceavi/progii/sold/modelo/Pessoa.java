@@ -5,7 +5,7 @@ package br.udesc.ceavi.progii.sold.modelo;
  * @author Robert
  */
 public abstract class Pessoa {
-    
+
     private String cpf;
     private String email;
     private String nome;
@@ -17,7 +17,7 @@ public abstract class Pessoa {
         this.nome = nome;
         this.telefone = telefone;
     }
-    
+
     public String getCpf() {
         return cpf;
     }
@@ -48,6 +48,11 @@ public abstract class Pessoa {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }   
-    
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente: " + nome + "\nCPF: " + cpf + "\nEmail:" + email + "\nTelefone:" + telefone;
+    }
+
 }

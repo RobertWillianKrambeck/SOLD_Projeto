@@ -8,18 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bairro {
-    private int id;
+    private final int id;
     private String cep;
     private String nome;
     private List<Rua> ruas;
+    private int aux;
 
-    public Bairro() {
+    public Bairro(int id) {
+        this.id = id;
     }
 
-    public Bairro(String cep, String nome) {
+    public Bairro(String cep, String nome,int id) {
         this.ruas = new ArrayList<>();
         this.cep = cep;
         this.nome = nome;
+        this.id = id;
     }
 
     public int getId() {
@@ -49,6 +52,14 @@ public class Bairro {
     public void setRuas(List<Rua> Ruas) {
         this.ruas = Ruas;
     }
-    
-    
+
+    public Rua getRua(int aux) {
+        return ruas.get(aux);
+    }
+
+    @Override
+    public String toString() {
+        return "Bairro:" + nome + "\nCEP:" + cep + "\nRua:" + getRua(aux).getNome();
+    }
+
 }

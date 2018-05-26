@@ -5,7 +5,7 @@ package br.udesc.ceavi.progii.sold.modelo;
  * @author Robert
  */
 public class Servico {
-    
+
     private int id;
     private String nome;
     private float valorDeInicial;
@@ -59,7 +59,14 @@ public class Servico {
     public void setCategoriaServico(TipoServico categoriaServico) {
         this.categoriaServico = categoriaServico;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Servico:" + "ID: " + id
+                + "\nNome: " + nome
+                + "\nValor De Inicial: " + valorDeInicial
+                + "\nLocalizacao: " + localizacao.toString()
+                + "\nCategoria Servico: " + categoriaServico.toString();
+    }
+
 }
